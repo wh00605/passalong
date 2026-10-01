@@ -18,10 +18,10 @@ export default async function ModerationPage({ searchParams }: PageProps<"/admin
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-extrabold">Moderation queue</h1>
+      <h1 className="text-3xl font-medium">Moderation queue</h1>
       <nav aria-label="Queues" className="flex gap-2">
         {tabs.map(([k, l]) => (
-          <Link key={k} href={`/admin/moderation?tab=${k}`} aria-current={tab === k ? "page" : undefined} className={`btn btn-sm ${tab === k ? "bg-ink text-surface" : "bg-surface"}`}>{l}</Link>
+          <Link key={k} href={`/admin/moderation?tab=${k}`} aria-current={tab === k ? "page" : undefined} className={`btn btn-sm ${tab === k ? "bg-brand-600 text-white" : "bg-surface"}`}>{l}</Link>
         ))}
       </nav>
       {tab === "reports" && <Reports />}
@@ -55,7 +55,7 @@ async function Reports() {
           </p>
           {r.details && <p className="text-sm italic">“{r.details}”</p>}
           {r.listing && <p className="text-sm">Item: <Link href={listingPath(r.listing)} className="link" target="_blank">{r.listing.title}</Link> by <Link href={`/admin/users?q=${r.listing.seller.username}`} className="link">@{r.listing.seller.username}</Link></p>}
-          {r.message && <p className="rounded-sm bg-brand-50 p-2 text-sm">Message: “{r.message.body.slice(0, 400)}”</p>}
+          {r.message && <p className="rounded-lg bg-brand-50 p-2 text-sm">Message: “{r.message.body.slice(0, 400)}”</p>}
           {r.user && <p className="text-sm">Member: <Link href={`/admin/users/${r.user.id}`} className="link">@{r.user.username}</Link> · {r.user.warningCount} warning(s){r.user.banned ? " · restricted" : ""}</p>}
           <div className="flex flex-wrap gap-2">
             {r.listing && <AdminAction action={moderateListingAction.bind(null, r.listing.id, "remove", r.id)} label="Remove item" fields={["reason"]} danger />}

@@ -34,18 +34,18 @@ export default async function DraftsPage({ searchParams }: PageProps<"/drafts">)
 
   return (
     <div className="container-page py-8">
-      <div className="flex flex-wrap items-end justify-between gap-3 border-b-2 border-ink pb-3">
-        <h1 className="text-4xl font-extrabold">My items</h1>
+      <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line pb-3">
+        <h1 className="text-4xl font-medium">My items</h1>
         <Link href="/sell" className="btn-accent">List an item</Link>
       </div>
       {pending > 0 && (
-        <p className="mt-4 rounded-md border-2 border-ink bg-accent-300 p-3 text-sm">
+        <p className="mt-4 rounded-xl border border-line bg-accent-300 p-3 text-sm">
           {pending} item{pending > 1 ? "s are" : " is"} being checked by our team and will go live once approved.
         </p>
       )}
       <nav aria-label="Item status" className="mt-4 flex gap-2 overflow-x-auto">
         {TABS.map(([s, label]) => (
-          <Link key={s} href={`/drafts?status=${s}`} aria-current={s === status ? "page" : undefined} className={`btn btn-sm shrink-0 ${s === status ? "bg-ink text-surface" : "bg-surface"}`}>
+          <Link key={s} href={`/drafts?status=${s}`} aria-current={s === status ? "page" : undefined} className={`btn btn-sm shrink-0 ${s === status ? "bg-brand-600 text-white" : "bg-surface"}`}>
             {label} <span className="font-mono text-xs opacity-70">{count(s)}</span>
           </Link>
         ))}
@@ -53,10 +53,10 @@ export default async function DraftsPage({ searchParams }: PageProps<"/drafts">)
       {items.length === 0 ? (
         <p className="mt-8 text-muted">Nothing here.</p>
       ) : (
-        <ul className="mt-6 divide-y-2 divide-line" role="list">
+        <ul className="mt-6 divide-y divide-line" role="list">
           {items.map((l) => (
             <li key={l.id} className="flex items-center gap-4 py-3">
-              <ListingPhoto photo={l.photos[0]} alt="" className="h-20 w-16 shrink-0 rounded-sm border-2 border-ink" sizes="64px" />
+              <ListingPhoto photo={l.photos[0]} alt="" className="h-20 w-16 shrink-0 rounded-lg border border-line" sizes="64px" />
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold">{l.title || "Untitled draft"}</p>
                 <p className="font-mono text-xs text-muted">

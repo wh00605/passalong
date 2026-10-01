@@ -19,13 +19,13 @@ function escapeHtml(s: string) {
 export function renderEmail(msg: EmailMessage): { html: string; text: string } {
   const body = msg.paragraphs.map((p) => `<p style="margin:0 0 16px;line-height:1.5">${escapeHtml(p)}</p>`).join("");
   const button = msg.action
-    ? `<p style="margin:24px 0"><a href="${escapeHtml(msg.action.url)}" style="background:#c8f53a;color:#121212;border:2px solid #121212;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:600;display:inline-block">${escapeHtml(msg.action.label)}</a></p>
+    ? `<p style="margin:24px 0"><a href="${escapeHtml(msg.action.url)}" style="background:#2e2862;color:#ffffff;padding:13px 26px;border-radius:999px;text-decoration:none;font-weight:600;display:inline-block">${escapeHtml(msg.action.label)}</a></p>
        <p style="margin:0 0 16px;font-size:13px;color:#555">If the button doesn't work, copy this link: ${escapeHtml(msg.action.url)}</p>`
     : "";
   const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>${escapeHtml(msg.subject)}</title></head>
-<body style="margin:0;background:#f4f1ea;font-family:Arial,Helvetica,sans-serif;color:#1c1a24">
+<body style="margin:0;background:#faf8f4;font-family:Arial,Helvetica,sans-serif;color:#1c1a24">
 <div style="max-width:560px;margin:0 auto;padding:32px 24px">
-<p style="font-size:24px;font-weight:800;letter-spacing:-1px;color:#121212;margin:0 0 24px">passalong</p>
+<p style="font-family:Georgia,serif;font-size:26px;color:#2e2862;margin:0 0 28px">Passalong</p>
 ${body}${button}
 <hr style="border:none;border-top:1px solid #e5e1da;margin:32px 0 16px">
 <p style="font-size:12px;color:#666;margin:0">You can change which emails you receive in <a href="${siteUrl}/settings/notifications">notification settings</a>.</p>

@@ -15,7 +15,7 @@ export default async function AdminUsers({ searchParams }: PageProps<"/admin/use
   });
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-extrabold">Users</h1>
+      <h1 className="text-3xl font-medium">Users</h1>
       <form className="flex gap-2" role="search">
         <label htmlFor="q" className="sr-only">Search users</label>
         <input id="q" name="q" defaultValue={q} placeholder="Email, username, name or ID" className="input max-w-md" />

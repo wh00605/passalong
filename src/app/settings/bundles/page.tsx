@@ -10,7 +10,7 @@ export default async function BundlesPage() {
   const pct = (n: number) => tiers.find((t) => t.minItems === n)?.percentOff ?? 0;
   return (
     <section aria-labelledby="h">
-      <h2 id="h" className="text-2xl font-extrabold">Bundle discounts</h2>
+      <h2 id="h" className="text-2xl font-medium">Bundle discounts</h2>
       <p className="mt-1 max-w-xl text-sm text-muted">
         Reward buyers who buy more than one item from you. The discount is applied automatically at checkout to the item prices (not postage).
       </p>

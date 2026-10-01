@@ -13,7 +13,7 @@ export default async function AdminPayouts() {
   ]);
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-extrabold">Payouts</h1>
+      <h1 className="text-3xl font-medium">Payouts</h1>
       <p className="text-sm">
         Sellers&apos; money held on the platform: <strong>{formatPence(pending._sum.amountPence ?? 0)}</strong> pending,{" "}
         <strong>{formatPence(available._sum.amountPence ?? 0)}</strong> available. Your Stripe platform balance should cover at least the sum of both.

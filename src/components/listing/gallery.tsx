@@ -7,13 +7,13 @@ export type GalleryPhoto = { src: string; srcSet: string; width: number; height:
 export function Gallery({ photos, title }: { photos: GalleryPhoto[]; title: string }) {
   const [i, setI] = useState(0);
   if (photos.length === 0) {
-    return <div className="flex aspect-[4/5] items-center justify-center rounded-md border-2 border-ink bg-brand-50 font-mono text-sm text-muted">No photos</div>;
+    return <div className="flex aspect-[4/5] items-center justify-center rounded-xl border border-line bg-brand-50 font-mono text-sm text-muted">No photos</div>;
   }
   const p = photos[i];
   const go = (d: number) => setI((x) => (x + d + photos.length) % photos.length);
   return (
     <section aria-roledescription="carousel" aria-label={`Photos of ${title}`}>
-      <div className="relative overflow-hidden rounded-md border-2 border-ink bg-brand-50">
+      <div className="relative overflow-hidden rounded-xl border border-line bg-brand-50">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           key={p.src}
@@ -29,13 +29,13 @@ export function Gallery({ photos, title }: { photos: GalleryPhoto[]; title: stri
         />
         {photos.length > 1 && (
           <>
-            <button type="button" onClick={() => go(-1)} aria-label="Previous photo" className="absolute top-1/2 left-2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md border-2 border-ink bg-surface hover:bg-accent-400">
+            <button type="button" onClick={() => go(-1)} aria-label="Previous photo" className="absolute top-1/2 left-2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-xl border border-line bg-surface hover:bg-brand-50">
               <ChevronLeft className="h-5 w-5" aria-hidden="true" />
             </button>
-            <button type="button" onClick={() => go(1)} aria-label="Next photo" className="absolute top-1/2 right-2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md border-2 border-ink bg-surface hover:bg-accent-400">
+            <button type="button" onClick={() => go(1)} aria-label="Next photo" className="absolute top-1/2 right-2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-xl border border-line bg-surface hover:bg-brand-50">
               <ChevronRight className="h-5 w-5" aria-hidden="true" />
             </button>
-            <span className="absolute bottom-2 left-2 rounded-sm bg-ink px-2 py-0.5 font-mono text-xs text-surface" aria-live="polite">
+            <span className="absolute bottom-2 left-2 rounded-lg bg-ink px-2 py-0.5 font-mono text-xs text-surface" aria-live="polite">
               {i + 1} / {photos.length}
             </span>
           </>
@@ -50,7 +50,7 @@ export function Gallery({ photos, title }: { photos: GalleryPhoto[]; title: stri
                 onClick={() => setI(idx)}
                 aria-label={`Show photo ${idx + 1}`}
                 aria-current={idx === i}
-                className={`block overflow-hidden rounded-sm border-2 ${idx === i ? "border-ink ring-2 ring-accent-400" : "border-ink/30 hover:border-ink"}`}
+                className={`block overflow-hidden rounded-lg border ${idx === i ? "border-ink ring-2 ring-accent-400" : "border-ink/30 hover:border-ink"}`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={ph.src.replace("-1280.webp", "-320.webp").replace("-640.webp", "-320.webp")} alt="" loading="lazy" className="aspect-square w-full object-cover" />

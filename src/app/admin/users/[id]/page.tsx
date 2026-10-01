@@ -31,7 +31,7 @@ export default async function AdminUser({ params }: PageProps<"/admin/users/[id]
     <div className="space-y-6">
       <div>
         <p className="eyebrow">{u.id}</p>
-        <h1 className="text-3xl font-extrabold">{u.name} <span className="font-mono text-lg text-muted">@{u.username}</span></h1>
+        <h1 className="text-3xl font-medium">{u.name} <span className="font-mono text-lg text-muted">@{u.username}</span></h1>
         <p className="text-sm">{u.email} {u.emailVerified ? "(verified)" : "(unverified)"} · {u.role} · joined {timeAgo(u.createdAt)} · sign-in: {u.accounts.map((a) => a.providerId).join(", ")}</p>
         <p className="text-sm">
           Status: {u.deletedAt ? "deleted" : u.banned ? (u.banExpires ? `suspended until ${formatDateTime(u.banExpires)}` : `banned – ${u.banReason}`) : "active"} · {u.warningCount} warnings · ID {u.identityVerifiedAt ? "verified" : "not verified"} · payouts {u.stripePayoutsEnabled ? "enabled" : "off"}
@@ -41,7 +41,7 @@ export default async function AdminUser({ params }: PageProps<"/admin/users/[id]
 
       <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[["Listings", u._count.listings], ["Purchases", u._count.ordersBought], ["Sales", u._count.ordersSold], ["Reports against", u._count.reportsAgainst], ["Pending", formatPence(balances.pendingPence)], ["Available", formatPence(balances.availablePence)], ["Rating", u.ratingCount ? `${u.ratingAvg.toFixed(1)} (${u.ratingCount})` : "–"]].map(([k, v]) => (
-          <div key={k} className="card p-3"><dt className="text-xs text-muted">{k}</dt><dd className="font-display text-xl font-extrabold">{v}</dd></div>
+          <div key={k} className="card p-3"><dt className="text-xs text-muted">{k}</dt><dd className="font-display text-xl font-medium">{v}</dd></div>
         ))}
       </dl>
 

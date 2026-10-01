@@ -59,7 +59,7 @@ export function PaymentPanel({ orderId, ready, configured, publishableKey, total
       <div className="mt-3">
         {!configured || !publishableKey ? (
           <>
-            <p className="rounded-md border-2 border-dashed border-ink/40 p-3 text-sm text-muted">
+            <p className="rounded-xl border border-dashed border-line-strong/60 p-3 text-sm text-muted">
               Payments aren&apos;t set up on this site yet, so purchases can&apos;t be completed.
             </p>
             <button type="button" className="btn-accent mt-3 w-full" disabled>Pay {totalLabel}</button>

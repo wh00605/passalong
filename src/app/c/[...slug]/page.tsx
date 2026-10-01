@@ -38,7 +38,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps<"
             <ul className="flex flex-wrap gap-2">
               {cat.children.filter((c) => !c.isProhibited).map((c) => (
                 <li key={c.id}>
-                  <Link href={`/c/${c.path}`} className="inline-flex min-h-10 items-center rounded-md border-2 border-ink bg-surface px-3 text-sm font-semibold hover:bg-accent-400">
+                  <Link href={`/c/${c.path}`} className="inline-flex min-h-10 items-center rounded-xl border border-line bg-surface px-3 text-sm font-semibold hover:bg-brand-50">
                     {c.name}
                   </Link>
                 </li>

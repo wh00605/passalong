@@ -25,7 +25,7 @@ export default async function AdminDisputes({ searchParams }: PageProps<"/admin/
   return (
     <div className="space-y-6">
       <div className="flex items-end justify-between">
-        <h1 className="text-3xl font-extrabold">Disputes</h1>
+        <h1 className="text-3xl font-medium">Disputes</h1>
         <Link href={all ? "/admin/disputes" : "/admin/disputes?all=1"} className="btn-ghost btn-sm">{all ? "Open only" : "Show all"}</Link>
       </div>
       {disputes.length === 0 && <p className="text-muted">No disputes.</p>}

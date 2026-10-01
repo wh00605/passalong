@@ -8,7 +8,7 @@ export default function ReportIllegalContentPage() {
   return (
     <div className="container-page max-w-2xl py-10">
       <p className="eyebrow">Notice and action</p>
-      <h1 className="mt-2 text-4xl font-extrabold">Report illegal content</h1>
+      <h1 className="mt-2 text-4xl font-medium">Report illegal content</h1>
       <p className="mt-3 text-muted">
         Use this form to tell us about content on Passalong you believe is illegal – for example counterfeit goods, stolen items, or illegal weapons. You don&apos;t need an account. We review every notice, act promptly, and email you our decision.
         For rule-breaking that isn&apos;t illegal, use the “Report” button on the item or profile instead.

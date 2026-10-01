@@ -34,7 +34,7 @@ export function Markdown({ source }: { source: string }) {
         if (/^#{2,3} /.test(lines[0]) && lines.length === 1) {
           const level = lines[0].startsWith("### ") ? 3 : 2;
           const text = lines[0].replace(/^#{2,3} /, "");
-          return level === 2 ? <h2 key={key} className="pt-2 text-2xl font-extrabold">{inline(text, key)}</h2> : <h3 key={key} className="text-lg font-bold">{inline(text, key)}</h3>;
+          return level === 2 ? <h2 key={key} className="pt-2 text-2xl font-medium">{inline(text, key)}</h2> : <h3 key={key} className="text-lg font-bold">{inline(text, key)}</h3>;
         }
         if (lines.every((l) => /^- /.test(l))) {
           return <ul key={key} className="list-disc space-y-1 pl-6">{lines.map((l, i) => <li key={i}>{inline(l.slice(2), `${key}-${i}`)}</li>)}</ul>;
@@ -46,7 +46,7 @@ export function Markdown({ source }: { source: string }) {
         if (/^#{2,3} /.test(lines[0])) {
           return (
             <div key={key} className="space-y-3">
-              <h2 className="pt-2 text-2xl font-extrabold">{inline(lines[0].replace(/^#{2,3} /, ""), key)}</h2>
+              <h2 className="pt-2 text-2xl font-medium">{inline(lines[0].replace(/^#{2,3} /, ""), key)}</h2>
               <Markdown source={lines.slice(1).join("\n")} />
             </div>
           );

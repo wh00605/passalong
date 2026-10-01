@@ -17,7 +17,7 @@ export default async function HelpPage({ searchParams }: PageProps<"/help">) {
   return (
     <div className="container-page max-w-4xl py-10">
       <p className="eyebrow">Help centre</p>
-      <h1 className="mt-2 text-5xl font-extrabold">How can we help?</h1>
+      <h1 className="mt-2 text-5xl font-medium">How can we help?</h1>
       <form role="search" className="mt-6 flex max-w-xl gap-2">
         <label htmlFor="help-q" className="sr-only">Search help articles</label>
         <input id="help-q" name="q" type="search" defaultValue={q} placeholder="e.g. refund, postage, offers" className="input" />
@@ -27,7 +27,7 @@ export default async function HelpPage({ searchParams }: PageProps<"/help">) {
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         {Object.entries(byCat).map(([cat, list]) => (
           <section key={cat} className="card p-5" aria-labelledby={`cat-${cat}`}>
-            <h2 id={`cat-${cat}`} className="text-xl font-extrabold">{cat}</h2>
+            <h2 id={`cat-${cat}`} className="text-xl font-medium">{cat}</h2>
             <ul className="mt-3 space-y-1" role="list">
               {list.map((a) => (
                 <li key={a.slug}><Link href={`/help/${a.slug}`} className="inline-flex min-h-9 items-center hover:underline">{a.title}</Link></li>
@@ -37,8 +37,8 @@ export default async function HelpPage({ searchParams }: PageProps<"/help">) {
         ))}
       </div>
       {articles.length === 0 && <p className="mt-6">No articles match. Try different words, or contact us.</p>}
-      <section className="mt-10 rounded-md border-2 border-ink bg-accent-300 p-6" aria-labelledby="contact-h">
-        <h2 id="contact-h" className="text-2xl font-extrabold">Still stuck?</h2>
+      <section className="mt-10 rounded-xl border border-line bg-accent-300 p-6" aria-labelledby="contact-h">
+        <h2 id="contact-h" className="text-2xl font-medium">Still stuck?</h2>
         <p className="mt-1">Our team replies within 2 working days.</p>
         <Link href="/contact" className="btn-primary mt-4">Contact us</Link>
       </section>

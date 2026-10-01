@@ -24,7 +24,7 @@ export default async function BundlePage({ params }: PageProps<"/members/[userna
   return (
     <div className="container-page py-8">
       <p className="eyebrow">@{seller.username}</p>
-      <h1 className="mt-1 text-4xl font-extrabold">Bundle from {seller.name}</h1>
+      <h1 className="mt-1 text-4xl font-medium">Bundle from {seller.name}</h1>
       <p className="mt-2 text-muted">Pick several items and pay postage once.{seller.bundleDiscountsEnabled && seller.bundleTiers.length ? ` ${seller.bundleTiers.map((t) => `${t.percentOff}% off ${t.minItems}+`).join(", ")}.` : ""}</p>
       <BundleBuilder
         sellerId={seller.id}

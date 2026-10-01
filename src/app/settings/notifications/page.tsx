@@ -15,24 +15,24 @@ export default async function NotificationSettingsPage() {
 
   return (
     <section aria-labelledby="h">
-      <h2 id="h" className="text-2xl font-extrabold">Notifications</h2>
+      <h2 id="h" className="text-2xl font-medium">Notifications</h2>
       <p className="mt-1 text-sm text-muted">Choose how we tell you about each kind of update.</p>
 
       <div className="mt-4">
         {integrations.webPush() ? (
           <EnablePush vapidKey={process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!} />
         ) : (
-          <p className="rounded-md border-2 border-dashed border-ink/40 p-3 text-sm text-muted">
+          <p className="rounded-xl border border-dashed border-line-strong/60 p-3 text-sm text-muted">
             Browser push notifications aren&apos;t set up on this site yet.
           </p>
         )}
       </div>
 
       <ActionForm action={saveNotificationPrefsAction} className="mt-6 space-y-4" submitLabel="Save notification settings">
-        <div className="overflow-x-auto rounded-md border-2 border-ink">
+        <div className="overflow-x-auto rounded-xl border border-line">
           <table className="w-full min-w-[520px] text-sm">
             <caption className="sr-only">Notification channels for each type of update</caption>
-            <thead className="bg-ink text-surface">
+            <thead className="bg-brand-600 text-white">
               <tr>
                 <th scope="col" className="px-4 py-3 text-left font-mono text-xs tracking-wider uppercase">Update</th>
                 {["In app", "Email", "Push"].map((h) => (

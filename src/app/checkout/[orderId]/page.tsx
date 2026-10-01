@@ -45,9 +45,9 @@ export default async function CheckoutPage({ params }: PageProps<"/checkout/[ord
   return (
     <div className="container-page max-w-5xl py-8">
       <p className="eyebrow">Order {order.number}</p>
-      <h1 className="mt-1 text-4xl font-extrabold">Checkout</h1>
+      <h1 className="mt-1 text-4xl font-medium">Checkout</h1>
       {integrations.stripe() && isTestMode() && (
-        <p className="mt-3 inline-block rounded-sm border-2 border-ink bg-accent-300 px-2 py-1 font-mono text-xs">TEST MODE – use card 4242 4242 4242 4242, any future date, any CVC</p>
+        <p className="mt-3 inline-block rounded-lg border border-line bg-accent-300 px-2 py-1 font-mono text-xs">TEST MODE – use card 4242 4242 4242 4242, any future date, any CVC</p>
       )}
       <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_380px]">
         <div className="space-y-6">
@@ -56,7 +56,7 @@ export default async function CheckoutPage({ params }: PageProps<"/checkout/[ord
             <ul className="mt-3 divide-y divide-line" role="list">
               {order.items.map((i) => (
                 <li key={i.id} className="flex items-center gap-3 py-3">
-                  <ListingPhoto photo={i.listing.photos[0]} alt="" sizes="64px" className="h-20 w-16 rounded-sm border-2 border-ink" />
+                  <ListingPhoto photo={i.listing.photos[0]} alt="" sizes="64px" className="h-20 w-16 rounded-lg border border-line" />
                   <span className="flex-1 font-semibold">{i.title}</span>
                   <span className="font-mono">{formatPence(i.pricePence)}</span>
                 </li>
@@ -83,7 +83,7 @@ export default async function CheckoutPage({ params }: PageProps<"/checkout/[ord
                   {note && <p className="text-xs text-muted">{note}</p>}
                 </div>
               ))}
-              <div className="flex justify-between border-t-2 border-ink pt-2 text-base font-bold">
+              <div className="flex justify-between border-t border-line pt-2 text-base font-bold">
                 <dt>Total</dt>
                 <dd className="font-mono">{formatPence(order.totalPence)}</dd>
               </div>

@@ -12,7 +12,7 @@ export default async function TaxReportPage({ searchParams }: PageProps<"/admin/
   const rows = await reportableSellers(year);
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-extrabold">Tax reporting {year}</h1>
+      <h1 className="text-3xl font-medium">Tax reporting {year}</h1>
       <p className="max-w-3xl text-sm text-muted">
         Sellers meeting the reporting threshold for the calendar year under the UK Reporting Rules for Digital Platforms (and EU DAC7 for EU-resident sellers). Reports for a calendar year are due to HMRC by 31 January the following year, and sellers must be given a copy of their data. TODO(legal/ops): confirm the submission format and the HMRC online service before the first filing.
       </p>

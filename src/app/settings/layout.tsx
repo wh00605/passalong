@@ -8,7 +8,7 @@ export default async function SettingsLayout({ children }: LayoutProps<"/setting
   await requireUser("/settings/profile");
   return (
     <div className="container-page py-8">
-      <h1 className="text-3xl font-extrabold sm:text-4xl">Settings</h1>
+      <h1 className="text-3xl font-medium sm:text-4xl">Settings</h1>
       <div className="mt-6 grid gap-8 md:grid-cols-[220px_1fr]">
         <SettingsNav />
         <div className="min-w-0">{children}</div>

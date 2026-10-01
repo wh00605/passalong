@@ -3,7 +3,7 @@ const COLOURS = ["#121212", "#1d6b34", "#8a3b12", "#1f4f8a", "#6b2d6b", "#4f5f00
 export function Avatar({ name, image, size = 40 }: { name: string; image?: string | null; size?: number }) {
   if (image) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={image} alt="" width={size} height={size} className="shrink-0 rounded-full border-2 border-ink object-cover" style={{ width: size, height: size }} />;
+    return <img src={image} alt="" width={size} height={size} className="shrink-0 rounded-full border border-line object-cover" style={{ width: size, height: size }} />;
   }
   const initials = name
     .split(/\s+/)

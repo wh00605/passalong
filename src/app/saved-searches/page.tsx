@@ -14,14 +14,14 @@ export default async function SavedSearchesPage() {
   const items = await db.savedSearch.findMany({ where: { userId: user.id }, orderBy: { createdAt: "desc" } });
   return (
     <div className="container-page max-w-3xl py-8">
-      <h1 className="border-b-2 border-ink pb-3 text-4xl font-extrabold">Saved searches</h1>
+      <h1 className="border-b border-line pb-3 text-4xl font-medium">Saved searches</h1>
       <p className="mt-3 text-sm text-muted">With alerts on, we&apos;ll notify you when new items match – at most once a day per search.</p>
       {items.length === 0 ? (
         <p className="mt-8 text-muted">
           No saved searches. Run a <Link href="/search" className="link">search</Link> and tap “Save search”.
         </p>
       ) : (
-        <ul className="mt-6 divide-y-2 divide-line" role="list">
+        <ul className="mt-6 divide-y divide-line" role="list">
           {items.map((s) => (
             <li key={s.id} className="flex flex-wrap items-center justify-between gap-3 py-4">
               <div>

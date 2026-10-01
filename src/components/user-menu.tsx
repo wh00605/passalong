@@ -50,7 +50,7 @@ export function UserMenu({
     <div ref={ref} className="relative">
       <button
         type="button"
-        className="flex min-h-11 items-center gap-1 rounded-md border-2 border-transparent px-1 hover:border-ink"
+        className="flex min-h-11 items-center gap-1 rounded-xl border border-transparent px-1 hover:border-ink"
         aria-expanded={open}
         aria-controls="user-menu"
         onClick={() => setOpen((o) => !o)}
@@ -62,15 +62,15 @@ export function UserMenu({
       <div
         id="user-menu"
         hidden={!open}
-        className="absolute right-0 z-50 mt-2 w-60 overflow-hidden rounded-md border-2 border-ink bg-surface py-1 shadow-[var(--shadow-tag)]"
+        className="absolute right-0 z-50 mt-2 w-60 overflow-hidden rounded-xl border border-line bg-surface py-1 shadow-[var(--shadow-tag)]"
       >
-        <p className="border-b-2 border-ink px-4 py-2 font-mono text-xs">
+        <p className="border-b border-line px-4 py-2 font-mono text-xs">
           Signed in as <strong>@{user.username}</strong>
         </p>
         <ul>
           {links.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="block px-4 py-2.5 text-sm hover:bg-accent-400" onClick={() => setOpen(false)}>
+              <Link href={l.href} className="block px-4 py-2.5 text-sm hover:bg-brand-50" onClick={() => setOpen(false)}>
                 {l.label}
               </Link>
             </li>
@@ -78,7 +78,7 @@ export function UserMenu({
           <li className="border-t border-line">
             <button
               type="button"
-              className="block w-full px-4 py-2.5 text-left text-sm hover:bg-accent-400"
+              className="block w-full px-4 py-2.5 text-left text-sm hover:bg-brand-50"
               onClick={async () => {
                 await authClient.signOut();
                 router.push("/");

@@ -9,7 +9,7 @@ export default async function NoticesPage() {
   const notices = await db.illegalContentNotice.findMany({ orderBy: [{ status: "asc" }, { createdAt: "asc" }], take: 200 });
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-extrabold">Illegal content notices</h1>
+      <h1 className="text-3xl font-medium">Illegal content notices</h1>
       <p className="max-w-2xl text-sm text-muted">
         Notices submitted under our notice-and-action process (EU DSA Art. 16 / UK Online Safety Act). Decide promptly, record your reasons, and – if you restrict content – also remove or hide it from the moderation tools. The notifier is emailed your decision.
       </p>

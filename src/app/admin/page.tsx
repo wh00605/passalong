@@ -27,10 +27,10 @@ export default async function AdminDashboard({ searchParams }: PageProps<"/admin
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
-        <h1 className="text-3xl font-extrabold">Dashboard</h1>
+        <h1 className="text-3xl font-medium">Dashboard</h1>
         <nav aria-label="Time range" className="flex gap-1">
           {[7, 30, 90].map((d) => (
-            <Link key={d} href={`/admin?days=${d}`} aria-current={d === days ? "true" : undefined} className={`btn btn-sm ${d === days ? "bg-ink text-surface" : "bg-surface"}`}>{d} days</Link>
+            <Link key={d} href={`/admin?days=${d}`} aria-current={d === days ? "true" : undefined} className={`btn btn-sm ${d === days ? "bg-brand-600 text-white" : "bg-surface"}`}>{d} days</Link>
           ))}
         </nav>
       </div>
@@ -40,8 +40,8 @@ export default async function AdminDashboard({ searchParams }: PageProps<"/admin
         <ul className="grid grid-cols-2 gap-3 md:grid-cols-5" role="list">
           {queues.map(([label, n, href]) => (
             <li key={label}>
-              <Link href={href} className={`block rounded-md border-2 border-ink p-3 hover:shadow-[var(--shadow-tag-sm)] ${n > 0 ? "bg-accent-400" : "bg-surface"}`}>
-                <span className="block font-display text-3xl font-extrabold">{n}</span>
+              <Link href={href} className={`block rounded-xl border border-line p-3 hover:shadow-[var(--shadow-tag-sm)] ${n > 0 ? "bg-accent-400" : "bg-surface"}`}>
+                <span className="block font-display text-3xl font-medium">{n}</span>
                 <span className="text-xs font-semibold">{label}</span>
               </Link>
             </li>
@@ -55,7 +55,7 @@ export default async function AdminDashboard({ searchParams }: PageProps<"/admin
           {tiles.map(([k, v]) => (
             <div key={k} className="card p-3">
               <dt className="text-xs font-semibold text-muted">{k}</dt>
-              <dd className="font-display text-2xl font-extrabold">{v}</dd>
+              <dd className="font-display text-2xl font-medium">{v}</dd>
             </div>
           ))}
         </dl>

@@ -41,7 +41,7 @@ export function DeliveryPicker({
         }}
         className="peer sr-only"
       />
-      <span className="block rounded-md border-2 border-ink/30 bg-surface p-3 peer-checked:border-ink peer-checked:bg-accent-400 peer-focus-visible:outline-3 peer-focus-visible:outline-ink">
+      <span className="block rounded-xl border border-line bg-surface p-3 peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-focus-visible:outline-3 peer-focus-visible:outline-ink">
         <span className="block font-semibold">{title}</span>
         <span className="text-sm">{desc}</span>
       </span>
@@ -85,7 +85,7 @@ export function DeliveryPicker({
         </div>
       )}
       {type === "IN_PERSON" && (
-        <p className="rounded-md bg-brand-50 p-3 text-sm">
+        <p className="rounded-xl bg-brand-50 p-3 text-sm">
           Agree a safe, public meeting place in chat. After paying you&apos;ll get a 6-digit code – only give it to the seller once you&apos;ve checked the item.
         </p>
       )}

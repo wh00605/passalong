@@ -48,8 +48,8 @@ export default async function OrderPage({ params }: PageProps<"/orders/[id]">) {
   return (
     <div className="container-page max-w-4xl py-8">
       <p className="eyebrow">{isSeller ? "Sale" : "Purchase"} · {order.number}</p>
-      <div className="mt-1 flex flex-wrap items-end justify-between gap-3 border-b-2 border-ink pb-3">
-        <h1 className="text-4xl font-extrabold">{ORDER_STATUS_LABEL[order.status]}</h1>
+      <div className="mt-1 flex flex-wrap items-end justify-between gap-3 border-b border-line pb-3">
+        <h1 className="text-4xl font-medium">{ORDER_STATUS_LABEL[order.status]}</h1>
         {conv && <Link href={`/inbox/${conv.id}`} className="btn-secondary btn-sm">Message {isBuyer ? "seller" : "buyer"}</Link>}
       </div>
 
@@ -57,7 +57,7 @@ export default async function OrderPage({ params }: PageProps<"/orders/[id]">) {
         <ol className="mt-6 grid grid-cols-4 gap-2" aria-label="Order progress">
           {STEPS.map((s, i) => (
             <li key={s} className="text-center" aria-current={i === stepIndex ? "step" : undefined}>
-              <span className={`mx-auto flex h-8 w-8 items-center justify-center rounded-full border-2 border-ink font-mono text-xs ${i <= stepIndex ? "bg-accent-400" : "bg-surface"}`}>
+              <span className={`mx-auto flex h-8 w-8 items-center justify-center rounded-full border border-line font-mono text-xs ${i <= stepIndex ? "bg-accent-400" : "bg-surface"}`}>
                 {i < stepIndex ? <Check className="h-4 w-4" aria-hidden="true" /> : i + 1}
               </span>
               <span className="mt-1 block text-xs font-semibold">{ORDER_STATUS_LABEL[s]}</span>
@@ -84,7 +84,7 @@ export default async function OrderPage({ params }: PageProps<"/orders/[id]">) {
               </>
             ) : (
               <>
-                {outbound?.lastError && <p className="rounded-md border-2 border-ink bg-accent-300 p-3 text-sm">{outbound.lastError}</p>}
+                {outbound?.lastError && <p className="rounded-xl border border-line bg-accent-300 p-3 text-sm">{outbound.lastError}</p>}
                 <RetryLabel orderId={order.id} />
                 <ManualTrackingForm orderId={order.id} />
               </>
@@ -111,7 +111,7 @@ export default async function OrderPage({ params }: PageProps<"/orders/[id]">) {
           <BuyerActions orderId={order.id} delivered={order.status === "DELIVERED"} windowEnds={windowEnds?.toISOString() ?? null} />
         )}
         {order.dispute && (
-          <Link href={`/orders/${order.id}/dispute`} className="block rounded-md border-2 border-hot bg-surface p-4 font-semibold hover:bg-accent-300">
+          <Link href={`/orders/${order.id}/dispute`} className="block rounded-xl border border-hot bg-surface p-4 font-semibold hover:bg-brand-50">
             A problem was reported on this order → view the case
           </Link>
         )}
@@ -186,7 +186,7 @@ export default async function OrderPage({ params }: PageProps<"/orders/[id]">) {
               <>
                 <div className="flex justify-between"><dt>Item price{order.bundleDiscountPence ? " (after discount)" : ""}</dt><dd className="font-mono">{formatPence(order.itemsSubtotalPence - order.bundleDiscountPence)}</dd></div>
                 <div className="flex justify-between"><dt>Selling fee</dt><dd className="font-mono">{formatPence(order.itemsSubtotalPence - order.bundleDiscountPence - order.sellerEarningsPence)}</dd></div>
-                <div className="flex justify-between border-t-2 border-ink pt-1.5 font-bold"><dt>You receive</dt><dd className="font-mono">{formatPence(order.sellerEarningsPence)}</dd></div>
+                <div className="flex justify-between border-t border-line pt-1.5 font-bold"><dt>You receive</dt><dd className="font-mono">{formatPence(order.sellerEarningsPence)}</dd></div>
               </>
             ) : (
               <>
@@ -194,7 +194,7 @@ export default async function OrderPage({ params }: PageProps<"/orders/[id]">) {
                 {order.bundleDiscountPence > 0 && <div className="flex justify-between"><dt>Discount</dt><dd className="font-mono">−{formatPence(order.bundleDiscountPence)}</dd></div>}
                 <div className="flex justify-between"><dt>Postage</dt><dd className="font-mono">{formatPence(order.shippingPence)}</dd></div>
                 <div className="flex justify-between"><dt>Buyer Protection</dt><dd className="font-mono">{formatPence(order.buyerProtectionFeePence)}</dd></div>
-                <div className="flex justify-between border-t-2 border-ink pt-1.5 font-bold"><dt>Total paid</dt><dd className="font-mono">{formatPence(order.totalPence)}</dd></div>
+                <div className="flex justify-between border-t border-line pt-1.5 font-bold"><dt>Total paid</dt><dd className="font-mono">{formatPence(order.totalPence)}</dd></div>
               </>
             )}
             {order.refunds.map((r) => (

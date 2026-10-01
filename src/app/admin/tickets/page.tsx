@@ -9,7 +9,7 @@ export default async function TicketsPage() {
   const tickets = await db.contactTicket.findMany({ orderBy: [{ status: "desc" }, { createdAt: "asc" }], take: 200 });
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-extrabold">Support tickets</h1>
+      <h1 className="text-3xl font-medium">Support tickets</h1>
       {tickets.length === 0 && <p className="text-muted">No tickets.</p>}
       <ul className="space-y-3" role="list">
         {tickets.map((t) => (

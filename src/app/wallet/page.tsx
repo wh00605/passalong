@@ -30,16 +30,16 @@ export default async function WalletPage() {
 
   return (
     <div className="container-page max-w-4xl py-8">
-      <h1 className="border-b-2 border-ink pb-3 text-4xl font-extrabold">Wallet</h1>
+      <h1 className="border-b border-line pb-3 text-4xl font-medium">Wallet</h1>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <div className="card p-5">
           <p className="eyebrow">Available</p>
-          <p className="mt-1 font-display text-4xl font-extrabold">{formatPence(balances.availablePence)}</p>
+          <p className="mt-1 font-display text-4xl font-medium">{formatPence(balances.availablePence)}</p>
           <p className="mt-1 text-sm text-muted">Ready to withdraw to your bank.</p>
         </div>
         <div className="card p-5">
           <p className="eyebrow">Pending</p>
-          <p className="mt-1 font-display text-4xl font-extrabold">{formatPence(balances.pendingPence)}</p>
+          <p className="mt-1 font-display text-4xl font-medium">{formatPence(balances.pendingPence)}</p>
           <p className="mt-1 text-sm text-muted">From sales not yet completed. Released when the buyer confirms, or {settings.autoReleaseDays} days after delivery.</p>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default async function WalletPage() {
 
       {payouts.length > 0 && (
         <section className="mt-8" aria-labelledby="payouts-h">
-          <h2 id="payouts-h" className="border-b-2 border-ink pb-2 text-2xl font-extrabold">Withdrawals</h2>
+          <h2 id="payouts-h" className="border-b border-line pb-2 text-2xl font-medium">Withdrawals</h2>
           <ul className="divide-y divide-line" role="list">
             {payouts.map((p) => (
               <li key={p.id} className="flex justify-between py-3 text-sm">
@@ -73,7 +73,7 @@ export default async function WalletPage() {
       )}
 
       <section className="mt-8" aria-labelledby="history-h">
-        <h2 id="history-h" className="border-b-2 border-ink pb-2 text-2xl font-extrabold">History</h2>
+        <h2 id="history-h" className="border-b border-line pb-2 text-2xl font-medium">History</h2>
         {entries.length === 0 ? (
           <p className="mt-3 text-sm text-muted">No activity yet.</p>
         ) : (

@@ -16,29 +16,29 @@ function SortablePhoto({
     <li
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`relative aspect-square overflow-hidden rounded-md border-2 border-ink bg-brand-50 ${isDragging ? "z-10 shadow-[var(--shadow-tag)]" : ""}`}
+      className={`relative aspect-square overflow-hidden rounded-xl border border-line bg-brand-50 ${isDragging ? "z-10 shadow-[var(--shadow-tag)]" : ""}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={photo.url} alt={`Photo ${index + 1}${index === 0 ? " (cover)" : ""}`} className="h-full w-full object-cover" />
-      {index === 0 && <span className="absolute top-1 left-1 rounded-sm bg-accent-400 px-1.5 font-mono text-[11px] font-bold">COVER</span>}
+      {index === 0 && <span className="absolute top-1 left-1 rounded-lg bg-accent-400 px-1.5 font-mono text-[11px] font-bold">COVER</span>}
       <button
         type="button"
         {...attributes}
         {...listeners}
         aria-label={`Reorder photo ${index + 1}. Press space to pick up, arrow keys to move, space to drop.`}
-        className="absolute bottom-1 left-1 inline-flex h-8 w-8 cursor-grab items-center justify-center rounded-sm border-2 border-ink bg-surface active:cursor-grabbing"
+        className="absolute bottom-1 left-1 inline-flex h-8 w-8 cursor-grab items-center justify-center rounded-lg border border-line bg-surface active:cursor-grabbing"
       >
         <GripVertical className="h-4 w-4" aria-hidden="true" />
       </button>
       <div className="absolute right-1 bottom-1 flex gap-1">
-        <button type="button" onClick={() => onMove(-1)} disabled={index === 0} aria-label={`Move photo ${index + 1} earlier`} className="inline-flex h-8 w-8 items-center justify-center rounded-sm border-2 border-ink bg-surface disabled:opacity-40">
+        <button type="button" onClick={() => onMove(-1)} disabled={index === 0} aria-label={`Move photo ${index + 1} earlier`} className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-surface disabled:opacity-40">
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         </button>
-        <button type="button" onClick={() => onMove(1)} disabled={index === total - 1} aria-label={`Move photo ${index + 1} later`} className="inline-flex h-8 w-8 items-center justify-center rounded-sm border-2 border-ink bg-surface disabled:opacity-40">
+        <button type="button" onClick={() => onMove(1)} disabled={index === total - 1} aria-label={`Move photo ${index + 1} later`} className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-surface disabled:opacity-40">
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </button>
       </div>
-      <button type="button" onClick={onRemove} aria-label={`Remove photo ${index + 1}`} className="absolute top-1 right-1 inline-flex h-8 w-8 items-center justify-center rounded-sm border-2 border-ink bg-surface hover:bg-danger hover:text-white">
+      <button type="button" onClick={onRemove} aria-label={`Remove photo ${index + 1}`} className="absolute top-1 right-1 inline-flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-surface hover:bg-danger hover:text-white">
         <X className="h-4 w-4" aria-hidden="true" />
       </button>
     </li>
@@ -127,14 +127,14 @@ export function PhotoUploader({ initial, max = 20, error }: { initial: UploadedP
               <SortablePhoto key={p.id} photo={p} index={i} total={photos.length} onRemove={() => setPhotos((ps) => ps.filter((x) => x.id !== p.id))} onMove={(d) => move(i, d)} />
             ))}
             {pending.map((p) => (
-              <li key={p.tempId} className="flex aspect-square items-center justify-center rounded-md border-2 border-dashed border-ink/50 bg-surface">
+              <li key={p.tempId} className="flex aspect-square items-center justify-center rounded-xl border border-dashed border-line-strong/50 bg-surface">
                 <Loader2 className="h-6 w-6 animate-spin" aria-hidden="true" />
                 <span className="sr-only">Uploading {p.name}</span>
               </li>
             ))}
             {photos.length + pending.length < max && (
               <li>
-                <label className="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-ink bg-surface text-sm font-semibold hover:bg-accent-300 focus-within:outline-3 focus-within:outline-ink">
+                <label className="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-line-strong bg-surface text-sm font-semibold hover:bg-brand-50 focus-within:outline-3 focus-within:outline-ink">
                   <Camera className="h-6 w-6" aria-hidden="true" />
                   Add photos
                   <input ref={inputRef} type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple className="sr-only" onChange={(e) => upload(e.target.files)} />

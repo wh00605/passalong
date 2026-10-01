@@ -9,7 +9,7 @@ export default async function ProfileSettingsPage() {
   const user = await requireUser();
   return (
     <section aria-labelledby="h">
-      <h2 id="h" className="text-2xl font-extrabold">Profile</h2>
+      <h2 id="h" className="text-2xl font-medium">Profile</h2>
       <p className="mt-1 text-sm text-muted">
         This is what other members see on <Link href={`/members/${user.username}`} className="link">your wardrobe page</Link>.
       </p>

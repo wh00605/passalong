@@ -75,7 +75,7 @@ export function SearchBox({ className = "" }: { className?: string }) {
       <label htmlFor={`${listId}-input`} className="sr-only">
         Search for items
       </label>
-      <Search className="pointer-events-none absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-subtle" aria-hidden="true" />
+      <Search className="pointer-events-none absolute top-1/2 left-4 h-[1.1rem] w-[1.1rem] -translate-y-1/2 text-subtle" strokeWidth={1.8} aria-hidden="true" />
       <input
         id={`${listId}-input`}
         name="q"
@@ -87,7 +87,7 @@ export function SearchBox({ className = "" }: { className?: string }) {
         aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
         autoComplete="off"
         placeholder="Search for items, brands…"
-        className="input pr-12 pl-10"
+        className="input rounded-full border-line bg-canvas pr-12 pl-11 hover:border-line-strong focus:bg-surface"
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
@@ -108,13 +108,13 @@ export function SearchBox({ className = "" }: { className?: string }) {
           }
         }}
       />
-      <kbd aria-hidden="true" className="pointer-events-none absolute top-1/2 right-3 hidden -translate-y-1/2 rounded-sm border border-ink/40 px-1.5 font-mono text-xs text-muted md:block">/</kbd>
+      <kbd aria-hidden="true" className="pointer-events-none absolute top-1/2 right-4 hidden -translate-y-1/2 rounded-md border border-line px-1.5 text-xs text-subtle md:block">/</kbd>
       <ul
         id={listId}
         role="listbox"
         aria-label="Search suggestions"
         hidden={!showList}
-        className="absolute top-full right-0 left-0 z-50 mt-1 overflow-hidden rounded-md border-2 border-ink bg-surface shadow-[4px_4px_0_0_#121212]"
+        className="absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-2xl border border-line bg-surface py-1 shadow-[var(--shadow-tag)]"
       >
         {items.map((s, i) => (
           <li
@@ -122,14 +122,14 @@ export function SearchBox({ className = "" }: { className?: string }) {
             id={`${listId}-${i}`}
             role="option"
             aria-selected={i === active}
-            className={`flex cursor-pointer items-center justify-between px-4 py-2.5 text-sm ${i === active ? "bg-accent-400" : ""}`}
+            className={`flex cursor-pointer items-center justify-between px-4 py-2.5 text-sm ${i === active ? "bg-brand-50" : ""}`}
             onMouseDown={(e) => {
               e.preventDefault();
               go(s.href);
             }}
           >
             <span>{s.label}</span>
-            {s.type !== "query" && <span className="font-mono text-[11px] tracking-widest text-muted uppercase">{s.type === "brand" ? "Brand" : "Category"}</span>}
+            {s.type !== "query" && <span className="text-xs text-muted">{s.type === "brand" ? "Brand" : "Category"}</span>}
           </li>
         ))}
       </ul>

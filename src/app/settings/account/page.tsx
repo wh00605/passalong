@@ -16,7 +16,7 @@ export default async function AccountSettingsPage() {
   return (
     <div className="space-y-10">
       <section aria-labelledby="email-h">
-        <h2 id="email-h" className="text-2xl font-extrabold">Email</h2>
+        <h2 id="email-h" className="text-2xl font-medium">Email</h2>
         <p className="mt-1 text-sm text-muted">
           Currently <strong className="text-ink">{user.email}</strong> {user.emailVerified ? "(confirmed)" : "(not confirmed)"}
         </p>
@@ -26,7 +26,7 @@ export default async function AccountSettingsPage() {
       </section>
 
       <section aria-labelledby="pw-h">
-        <h2 id="pw-h" className="text-2xl font-extrabold">Password</h2>
+        <h2 id="pw-h" className="text-2xl font-medium">Password</h2>
         {hasPassword ? (
           <ActionForm action={changePasswordAction} className="mt-4 max-w-xl space-y-4" submitLabel="Change password" submitClassName="btn-secondary">
             <Field name="currentPassword" label="Current password" type="password" autoComplete="current-password" required />
@@ -41,7 +41,7 @@ export default async function AccountSettingsPage() {
       </section>
 
       <section aria-labelledby="linked-h">
-        <h2 id="linked-h" className="text-2xl font-extrabold">Sign-in methods</h2>
+        <h2 id="linked-h" className="text-2xl font-medium">Sign-in methods</h2>
         <ul className="mt-3 space-y-2 text-sm" role="list">
           {hasPassword && <li className="card px-4 py-3">Email and password</li>}
           {providers.map((p) => (
@@ -51,7 +51,7 @@ export default async function AccountSettingsPage() {
       </section>
 
       <section aria-labelledby="sessions-h">
-        <h2 id="sessions-h" className="text-2xl font-extrabold">Where you&apos;re signed in</h2>
+        <h2 id="sessions-h" className="text-2xl font-medium">Where you&apos;re signed in</h2>
         <ul className="mt-3 space-y-2 text-sm" role="list">
           {sessions.map((s) => (
             <li key={s.id} className="card flex justify-between gap-4 px-4 py-3">

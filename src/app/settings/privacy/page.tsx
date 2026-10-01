@@ -12,7 +12,7 @@ export default async function PrivacySettingsPage() {
   return (
     <div className="space-y-10">
       <section aria-labelledby="h">
-        <h2 id="h" className="text-2xl font-extrabold">Privacy</h2>
+        <h2 id="h" className="text-2xl font-medium">Privacy</h2>
         <ActionForm action={savePrivacyAction} className="mt-4 max-w-2xl" submitLabel="Save privacy settings">
           <div className="card px-4">
             <Toggle name="showOnlineStatus" label="Show when I was last active" description="Other members see e.g. “Active 2 hours ago” on your profile." defaultChecked={user.showOnlineStatus} />
@@ -23,7 +23,7 @@ export default async function PrivacySettingsPage() {
         </ActionForm>
       </section>
       <section id="cookies" aria-labelledby="cookies-h">
-        <h2 id="cookies-h" className="text-2xl font-extrabold">Cookies</h2>
+        <h2 id="cookies-h" className="text-2xl font-medium">Cookies</h2>
         <p className="mt-1 text-sm text-muted">
           Change which optional cookies you allow on this device. See our <Link href="/legal/cookies" className="link">cookie policy</Link>.
         </p>

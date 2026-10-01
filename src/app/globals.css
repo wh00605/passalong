@@ -1,49 +1,51 @@
 @import "tailwindcss";
 
 /*
- * Passalong design tokens – "resale tag" identity.
- * Paper + ink + one acid accent. Lime is only ever a FILL behind ink text (never text on paper).
- * Contrast (WCAG 2.2 AA): ink/paper 17.6:1 · muted/paper 6.6:1 · ink/lime 15.9:1 · ink/hot 6.4:1.
+ * Passalong design tokens – "editorial resale".
+ * Ivory paper, deep indigo, espresso ink, a whisper of brass. Hairlines, soft shadows, serif display.
+ * Contrast (WCAG 2.2 AA): ink/ivory 16.9:1 · muted/ivory 5.9:1 · white/indigo 13.2:1 · brass-text/ivory 5.4:1.
  */
 @theme {
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: var(--font-bricolage), var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  /* "mono" is used for numbers and small labels – rendered in the sans with tabular figures. */
+  --font-mono: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
 
-  /* "brand" = ink scale (kept as brand-* so components stay readable) */
-  --color-brand-50: #ebe7dd;
-  --color-brand-100: #ddd8cb;
-  --color-brand-200: #c9c3b3;
-  --color-brand-500: #2b2a27;
-  --color-brand-600: #121212;
-  --color-brand-700: #000000;
-  --color-brand-800: #000000;
+  /* Brand = deep indigo */
+  --color-brand-50: #f3f2f8;
+  --color-brand-100: #e6e4f1;
+  --color-brand-200: #c9c5e2;
+  --color-brand-500: #4a4385;
+  --color-brand-600: #2e2862;
+  --color-brand-700: #221d4b;
+  --color-brand-800: #17133a;
 
-  /* Acid lime accent – fills only */
-  --color-accent-300: #dcff73;
-  --color-accent-400: #c8f53a;
-  --color-accent-600: #4f5f00; /* lime-family text on paper: 6.9:1 */
+  /* Accent = champagne tints (fills) and brass (text/lines) */
+  --color-accent-300: #f6f1e7;
+  --color-accent-400: #ece2cf;
+  --color-accent-600: #7a5c2e;
+  --color-brass: #b08d57;
 
-  --color-hot: #ff5a1f;
+  --color-hot: #b4442b;
 
-  --color-ink: #121212;
-  --color-muted: #57534c;
-  --color-subtle: #6b665d;
-  --color-canvas: #f4f1ea;
-  --color-surface: #fbfaf6;
-  --color-line: #ddd8cb;
-  --color-line-strong: #121212;
+  --color-ink: #1a1714;
+  --color-muted: #6a635b;
+  --color-subtle: #7a736a;
+  --color-canvas: #faf8f4;
+  --color-surface: #ffffff;
+  --color-line: #e8e2d8;
+  --color-line-strong: #8c857c; /* 3.6:1 on white – input borders (non-text contrast) */
 
   --color-danger: #b3261e;
-  --color-danger-bg: #fde9e6;
-  --color-success: #1d6b34;
-  --color-success-bg: #e6f4e3;
+  --color-danger-bg: #fbeeec;
+  --color-success: #1f6b3c;
+  --color-success-bg: #ebf5ee;
   --color-warning: #7a4f00;
-  --color-warning-bg: #fff2d6;
+  --color-warning-bg: #fbf3e2;
 
-  --radius-card: 0.5rem;
-  --shadow-tag: 4px 4px 0 0 #121212;
-  --shadow-tag-sm: 2px 2px 0 0 #121212;
+  --radius-card: 1rem;
+  --shadow-tag: 0 12px 32px -12px rgba(26, 23, 20, 0.18), 0 2px 6px rgba(26, 23, 20, 0.05);
+  --shadow-tag-sm: 0 6px 18px -8px rgba(26, 23, 20, 0.16);
 
   --animate-marquee: marquee 38s linear infinite;
   @keyframes marquee {
@@ -57,7 +59,7 @@
 }
 
 html {
-  scroll-padding-top: 6rem; /* keep focused elements clear of the sticky header (WCAG 2.4.11) */
+  scroll-padding-top: 7rem; /* keep focused elements clear of the sticky header (WCAG 2.4.11) */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -65,25 +67,35 @@ body {
   background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
+  font-feature-settings: "tnum" 0, "ss01";
 }
 
-h1, h2, h3 {
+h1,
+h2 {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  font-weight: 450;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 96, "SOFT" 30;
+}
+
+h3 {
+  letter-spacing: -0.005em;
+}
+
+.font-mono {
+  font-variant-numeric: tabular-nums;
 }
 
 ::selection {
-  background: var(--color-accent-400);
+  background: var(--color-brand-100);
   color: var(--color-ink);
 }
 
 /* Visible, high-contrast focus for every interactive element (WCAG 2.4.7 / 2.4.13). */
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
-  outline: 3px solid var(--color-ink);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 6px var(--color-accent-400);
-  border-radius: 4px;
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 3px;
+  border-radius: 8px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -98,54 +110,46 @@ h1, h2, h3 {
 }
 
 @utility btn {
-  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md border-2 border-ink px-5 text-sm font-semibold transition-[transform,box-shadow,background-color] duration-150 disabled:cursor-not-allowed disabled:opacity-60;
-  &:not(:disabled):hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-tag-sm);
-  }
-  &:not(:disabled):active {
-    transform: translate(0, 0);
-    box-shadow: none;
-  }
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-transparent px-6 text-sm font-medium tracking-[0.01em] transition-[background-color,border-color,color,box-shadow] duration-200 disabled:cursor-not-allowed disabled:opacity-50;
 }
 @utility btn-primary {
-  @apply btn bg-ink text-surface hover:bg-accent-400 hover:text-ink;
+  @apply btn bg-brand-600 text-white hover:bg-brand-700 hover:shadow-[var(--shadow-tag-sm)];
 }
 @utility btn-accent {
-  @apply btn bg-accent-400 text-ink hover:bg-accent-300;
+  @apply btn bg-ink text-white hover:bg-brand-700 hover:shadow-[var(--shadow-tag-sm)];
 }
 @utility btn-secondary {
-  @apply btn bg-surface text-ink hover:bg-brand-50;
+  @apply btn border-line-strong bg-surface text-ink hover:border-ink;
 }
 @utility btn-ghost {
-  @apply btn border-transparent text-ink hover:border-ink hover:bg-surface;
+  @apply btn text-ink hover:bg-brand-50;
 }
 @utility btn-danger {
-  @apply btn border-danger bg-danger text-white;
+  @apply btn bg-danger text-white hover:opacity-90;
 }
 @utility btn-sm {
-  @apply min-h-9 px-3.5;
+  @apply min-h-9 px-4;
 }
 @utility input {
-  @apply block min-h-11 w-full rounded-md border-2 border-ink/80 bg-surface px-3 py-2 text-base text-ink placeholder:text-subtle hover:border-ink aria-[invalid=true]:border-danger;
+  @apply block min-h-12 w-full rounded-xl border border-line-strong/70 bg-surface px-4 py-2.5 text-base text-ink placeholder:text-subtle hover:border-line-strong focus:border-brand-600 aria-[invalid=true]:border-danger;
 }
 @utility label {
-  @apply mb-1.5 block text-sm font-semibold text-ink;
+  @apply mb-1.5 block text-sm font-medium text-ink;
 }
 @utility hint {
-  @apply mt-1 text-sm text-muted;
+  @apply mt-1.5 text-sm text-muted;
 }
 @utility card {
-  @apply rounded-(--radius-card) border-2 border-ink bg-surface;
+  @apply rounded-(--radius-card) border border-line bg-surface;
 }
 @utility link {
-  @apply font-semibold text-ink underline decoration-2 decoration-accent-600 underline-offset-[3px] hover:bg-accent-400 hover:decoration-ink;
+  @apply font-medium text-brand-600 underline decoration-brand-200 decoration-1 underline-offset-4 hover:decoration-brand-600;
 }
 @utility eyebrow {
-  @apply font-mono text-xs font-medium tracking-[0.14em] text-muted uppercase;
+  @apply text-[0.7rem] font-medium tracking-[0.18em] text-accent-600 uppercase;
 }
 @utility tag {
-  @apply inline-flex items-center rounded-sm border-2 border-ink bg-accent-400 px-2 py-0.5 font-mono text-sm font-semibold text-ink;
+  @apply inline-flex items-center rounded-full bg-accent-300 px-3 py-0.5 text-xs font-medium text-ink;
 }
 @utility sr-only-focusable {
   &:not(:focus) {
@@ -153,5 +157,5 @@ h1, h2, h3 {
   }
 }
 @utility container-page {
-  @apply mx-auto w-full max-w-7xl px-4 sm:px-6;
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-8;
 }

@@ -56,9 +56,9 @@ export function CookieBanner() {
   return (
     <section
       aria-labelledby="cookie-title"
-      className="fixed inset-x-0 bottom-0 z-50 border-t-2 border-ink bg-surface p-4 sm:right-auto sm:bottom-4 sm:left-4 sm:max-w-md sm:rounded-md sm:border-2 sm:shadow-[var(--shadow-tag)]"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-surface p-4 sm:right-auto sm:bottom-4 sm:left-4 sm:max-w-md sm:rounded-xl sm:border-2 sm:shadow-[var(--shadow-tag)]"
     >
-      <h2 id="cookie-title" className="text-lg font-extrabold">
+      <h2 id="cookie-title" className="text-lg font-medium">
         Cookies, briefly.
       </h2>
       <p className="mt-1 text-sm text-muted">

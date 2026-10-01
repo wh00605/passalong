@@ -17,7 +17,7 @@ export default async function FavouritesPage() {
   });
   return (
     <div className="container-page py-8">
-      <h1 className="border-b-2 border-ink pb-3 text-4xl font-extrabold">Favourites</h1>
+      <h1 className="border-b border-line pb-3 text-4xl font-medium">Favourites</h1>
       <p className="mt-3 text-sm text-muted">We&apos;ll let you know if any of these drop in price. Manage alerts in <Link href="/settings/notifications" className="link">notification settings</Link>.</p>
       <div className="mt-6">
         <ListingGrid listings={favs.map((f) => f.listing)} empty={<>No favourites yet. Tap the heart on anything you like.</>} />

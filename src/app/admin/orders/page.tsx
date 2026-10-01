@@ -22,7 +22,7 @@ export default async function AdminOrders({ searchParams }: PageProps<"/admin/or
   });
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-extrabold">Orders</h1>
+      <h1 className="text-3xl font-medium">Orders</h1>
       <form className="flex flex-wrap gap-2" role="search">
         <label htmlFor="q" className="sr-only">Search orders</label>
         <input id="q" name="q" defaultValue={q} placeholder="Order number, username or payment ID" className="input max-w-sm" />

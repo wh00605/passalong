@@ -15,7 +15,7 @@ export default async function TaxPage() {
   }
   return (
     <section aria-labelledby="h">
-      <h2 id="h" className="text-2xl font-extrabold">Tax details</h2>
+      <h2 id="h" className="text-2xl font-medium">Tax details</h2>
       <p className="mt-1 max-w-xl text-sm text-muted">
         Under the UK&apos;s reporting rules for digital platforms (and the EU&apos;s DAC7), we must report sellers who make 30 or more sales or earn £1,700 or more in a calendar year to HMRC. We only ask once you&apos;re close to that point. Your tax ID is encrypted.
       </p>

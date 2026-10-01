@@ -35,7 +35,7 @@ export default async function FeesPage() {
   const s = await getSettings();
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-extrabold">Fees & policies</h1>
+      <h1 className="text-3xl font-medium">Fees & policies</h1>
       <p className="max-w-2xl text-sm text-muted">Changes apply immediately to new orders and listings, and every change is recorded in the audit log. Update the help centre and legal pages if you change customer-facing terms.</p>
       <ActionForm action={saveSettingsAction} className="grid max-w-3xl gap-4 sm:grid-cols-2" submitLabel="Save settings">
         {(Object.keys(DEFAULT_SETTINGS) as (keyof typeof DEFAULT_SETTINGS)[]).map((k) => (

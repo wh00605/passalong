@@ -52,7 +52,7 @@ export function SellerCancel({ orderId }: { orderId: string }) {
   const { pending, error, run } = useRun();
   if (!open) return <button type="button" className="btn-ghost btn-sm text-danger" onClick={() => setOpen(true)}>Can&apos;t send it? Cancel the order</button>;
   return (
-    <div className="space-y-2 rounded-md border-2 border-danger p-3">
+    <div className="space-y-2 rounded-xl border border-danger p-3">
       <label htmlFor="cancel-reason" className="label">Why are you cancelling?</label>
       <input id="cancel-reason" className="input" value={reason} onChange={(e) => setReason(e.target.value)} maxLength={300} />
       <p className="text-xs text-muted">The buyer is refunded in full. Frequent cancellations can affect your account.</p>
@@ -92,7 +92,7 @@ export function RetryLabel({ orderId }: { orderId: string }) {
 
 export function ManualTrackingForm({ orderId }: { orderId: string }) {
   return (
-    <details className="rounded-md border-2 border-ink/30 p-3">
+    <details className="rounded-xl border border-line p-3">
       <summary className="cursor-pointer text-sm font-semibold">Posted it yourself? Add tracking</summary>
       <ActionForm action={manualTrackingAction} className="mt-3 grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end" submitLabel="Mark as sent" submitClassName="btn-primary btn-sm">
         <input type="hidden" name="orderId" value={orderId} />
@@ -109,7 +109,7 @@ export function CollectionForm({ orderId }: { orderId: string }) {
   const { pending, error, run } = useRun();
   const [min] = useState(tomorrowIso);
   return (
-    <details className="rounded-md border-2 border-ink/30 p-3">
+    <details className="rounded-xl border border-line p-3">
       <summary className="cursor-pointer text-sm font-semibold">Prefer a collection from home?</summary>
       <div className="mt-3 flex flex-wrap items-end gap-2">
         <div>

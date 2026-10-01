@@ -138,7 +138,7 @@ export function ChatThread(props: {
   return (
     <section className="flex h-full flex-col" aria-label={`Conversation with ${other.name}`}>
       {/* Header */}
-      <header className="flex items-center gap-3 border-b-2 border-ink p-3">
+      <header className="flex items-center gap-3 border-b border-line p-3">
         <Link href="/inbox" className="btn-ghost btn-sm md:hidden" aria-label="Back to all conversations">
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         </Link>
@@ -151,7 +151,7 @@ export function ChatThread(props: {
         </div>
         <details className="relative">
           <summary className="btn-ghost btn-sm list-none" aria-label="More options">•••</summary>
-          <div className="absolute right-0 z-20 mt-1 w-48 space-y-1 rounded-md border-2 border-ink bg-surface p-2 shadow-[var(--shadow-tag)]">
+          <div className="absolute right-0 z-20 mt-1 w-48 space-y-1 rounded-xl border border-line bg-surface p-2 shadow-[var(--shadow-tag)]">
             <ReportButton targetType="USER" targetId={other.id} label="Report member" className="btn-ghost btn-sm w-full justify-start" />
             <BlockButton targetId={other.id} initial={props.blocked} name={other.name} />
           </div>
@@ -182,7 +182,7 @@ export function ChatThread(props: {
 
       {/* Messages */}
       <ol className="min-h-0 flex-1 space-y-2 overflow-y-auto p-3" aria-label="Messages">
-        <li className="mx-auto max-w-md rounded-md border-2 border-dashed border-ink/40 p-3 text-center text-xs text-muted">
+        <li className="mx-auto max-w-md rounded-xl border border-dashed border-line-strong/60 p-3 text-center text-xs text-muted">
           <ShieldAlert className="mx-auto mb-1 h-4 w-4" aria-hidden="true" />
           {SAFETY_TEXT}
         </li>
@@ -194,17 +194,17 @@ export function ChatThread(props: {
             <li key={m.id}>
               {showDay && <p className="my-3 text-center font-mono text-[11px] tracking-wider text-muted uppercase">{d}</p>}
               {m.type === "SYSTEM" || m.type === "ORDER_EVENT" ? (
-                <p className="mx-auto max-w-md rounded-sm bg-brand-50 px-3 py-1.5 text-center text-xs">
+                <p className="mx-auto max-w-md rounded-lg bg-brand-50 px-3 py-1.5 text-center text-xs">
                   {m.order ? <Link href={`/orders/${m.order.id}`} className="font-semibold underline">{m.body}</Link> : m.body}
                   <span className="ml-2 font-mono text-muted">{time(m.createdAt)}</span>
                 </p>
               ) : m.type === "OFFER" && m.offer ? (
                 <div className={`flex ${mine ? "justify-end" : "justify-start"}`}>
-                  <div className="w-full max-w-xs rounded-md border-2 border-ink bg-surface p-3">
+                  <div className="w-full max-w-xs rounded-xl border border-line bg-surface p-3">
                     <p className="flex items-center gap-2 font-mono text-xs tracking-wider uppercase">
                       <Tag className="h-3.5 w-3.5" aria-hidden="true" /> {mine ? "Your offer" : "Offer"}
                     </p>
-                    <p className="mt-1 font-display text-2xl font-extrabold">{formatPence(m.offer.amountPence)}</p>
+                    <p className="mt-1 font-display text-2xl font-medium">{formatPence(m.offer.amountPence)}</p>
                     {m.offer.items.length > 1 && <p className="text-xs text-muted">For {m.offer.items.length} items</p>}
                     <p className="mt-1 text-xs">
                       Status: <strong>{m.offer.status.toLowerCase()}</strong>
@@ -230,17 +230,17 @@ export function ChatThread(props: {
                 </div>
               ) : (
                 <div className={`group flex flex-col ${mine ? "items-end" : "items-start"}`}>
-                  <div className={`max-w-[80%] rounded-md border-2 border-ink px-3 py-2 ${mine ? "bg-ink text-surface" : "bg-surface"}`}>
+                  <div className={`max-w-[80%] rounded-xl border border-line px-3 py-2 ${mine ? "bg-brand-600 text-white" : "bg-surface"}`}>
                     {m.attachments.map((a) => (
                       <a key={a.id} href={`/api/files/private/${a.storageKey}-1280.webp`} target="_blank" rel="noreferrer" className="mb-1 block">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`/api/files/private/${a.storageKey}-640.webp`} alt={`Photo from ${mine ? "you" : other.name}`} width={a.width} height={a.height} className="max-h-72 w-auto rounded-sm" loading="lazy" />
+                        <img src={`/api/files/private/${a.storageKey}-640.webp`} alt={`Photo from ${mine ? "you" : other.name}`} width={a.width} height={a.height} className="max-h-72 w-auto rounded-lg" loading="lazy" />
                       </a>
                     ))}
                     {m.body && <p className="text-sm break-words whitespace-pre-wrap">{m.body}</p>}
                   </div>
                   {m.safetyWarning && (
-                    <p className="mt-1 flex max-w-[80%] items-start gap-1.5 rounded-sm border-2 border-hot bg-surface px-2 py-1 text-xs" role="note">
+                    <p className="mt-1 flex max-w-[80%] items-start gap-1.5 rounded-lg border border-hot bg-surface px-2 py-1 text-xs" role="note">
                       <ShieldAlert className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                       {mine ? "This message mentions paying or talking off Passalong. " : ""}
                       {SAFETY_TEXT}
@@ -263,7 +263,7 @@ export function ChatThread(props: {
       {/* Offer panel */}
       {offerOpen && listing && !disabled && (
         <form
-          className="border-t-2 border-ink bg-accent-300 p-3"
+          className="border-t border-line bg-accent-300 p-3"
           onSubmit={(e) => {
             e.preventDefault();
             submitOffer();
@@ -287,10 +287,10 @@ export function ChatThread(props: {
       {/* Composer */}
       {error && <p role="alert" className="border-t border-danger bg-danger-bg px-3 py-2 text-sm text-danger">{error}</p>}
       {disabled ? (
-        <p className="border-t-2 border-ink p-3 text-center text-sm text-muted">{other.deleted ? "This member has left Passalong." : "You can't message this member."}</p>
+        <p className="border-t border-line p-3 text-center text-sm text-muted">{other.deleted ? "This member has left Passalong." : "You can't message this member."}</p>
       ) : (
         <form
-          className="flex items-end gap-2 border-t-2 border-ink p-3"
+          className="flex items-end gap-2 border-t border-line p-3"
           onSubmit={(e) => {
             e.preventDefault();
             send();

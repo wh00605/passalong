@@ -15,7 +15,7 @@ export function Toggle({ name, label, description, defaultChecked }: { name: str
           name={name}
           defaultChecked={defaultChecked}
           aria-describedby={description ? `${id}-d` : undefined}
-          className="peer h-7 w-12 cursor-pointer appearance-none rounded-full border-2 border-ink bg-surface transition-colors checked:bg-accent-400"
+          className="peer h-7 w-12 cursor-pointer appearance-none rounded-full border border-line bg-surface transition-colors checked:bg-accent-400"
         />
         <span aria-hidden="true" className="pointer-events-none absolute top-1 left-1 h-5 w-5 rounded-full bg-ink transition-transform peer-checked:translate-x-5" />
       </span>

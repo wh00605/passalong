@@ -12,9 +12,9 @@ export default async function SellPage() {
   return (
     <div className="container-page max-w-3xl py-8">
       <p className="eyebrow">New listing</p>
-      <h1 className="mt-1 text-4xl font-extrabold">Sell an item</h1>
+      <h1 className="mt-1 text-4xl font-medium">Sell an item</h1>
       {!user.emailVerified ? (
-        <p className="mt-6 rounded-md border-2 border-ink bg-accent-300 p-4">
+        <p className="mt-6 rounded-xl border border-line bg-accent-300 p-4">
           Please confirm your email address before listing. <Link href="/verify-email" className="link">Resend the link</Link>
         </p>
       ) : (

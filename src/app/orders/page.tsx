@@ -25,10 +25,10 @@ export default async function OrdersPage({ searchParams }: PageProps<"/orders">)
 
   return (
     <div className="container-page max-w-4xl py-8">
-      <h1 className="border-b-2 border-ink pb-3 text-4xl font-extrabold">Orders</h1>
+      <h1 className="border-b border-line pb-3 text-4xl font-medium">Orders</h1>
       <nav aria-label="Order type" className="mt-4 flex gap-2">
         {(["bought", "sold"] as const).map((t) => (
-          <Link key={t} href={`/orders?tab=${t}`} aria-current={tab === t ? "page" : undefined} className={`btn btn-sm capitalize ${tab === t ? "bg-ink text-surface" : "bg-surface"}`}>
+          <Link key={t} href={`/orders?tab=${t}`} aria-current={tab === t ? "page" : undefined} className={`btn btn-sm capitalize ${tab === t ? "bg-brand-600 text-white" : "bg-surface"}`}>
             {t}
           </Link>
         ))}
@@ -36,7 +36,7 @@ export default async function OrdersPage({ searchParams }: PageProps<"/orders">)
       {orders.length === 0 ? (
         <p className="mt-8 text-muted">{tab === "sold" ? "No sales yet." : "No purchases yet."}</p>
       ) : (
-        <ul className="mt-6 divide-y-2 divide-line" role="list">
+        <ul className="mt-6 divide-y divide-line" role="list">
           {orders.map((o) => (
             <li key={o.id}>
               <Link href={`/orders/${o.id}`} className="flex items-center gap-4 py-4 hover:bg-surface">
@@ -49,7 +49,7 @@ export default async function OrdersPage({ searchParams }: PageProps<"/orders">)
                   <span className="block font-mono text-xs text-muted">
                     {o.number} · {tab === "sold" ? `to ${o.buyer.name}` : `from ${o.seller.name}`} · {timeAgo(o.createdAt)}
                   </span>
-                  <span className="mt-1 inline-block rounded-sm border border-ink px-1.5 font-mono text-[11px] uppercase">{ORDER_STATUS_LABEL[o.status]}</span>
+                  <span className="mt-1 inline-block rounded-lg border border-ink px-1.5 font-mono text-[11px] uppercase">{ORDER_STATUS_LABEL[o.status]}</span>
                 </span>
                 <span className="text-right">
                   <span className="block font-mono font-semibold">{formatPence(tab === "sold" ? o.sellerEarningsPence : o.totalPence)}</span>

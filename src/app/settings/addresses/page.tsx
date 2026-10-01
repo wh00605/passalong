@@ -10,7 +10,7 @@ export default async function AddressesPage() {
   return (
     <div className="space-y-10">
       <section aria-labelledby="h">
-        <h2 id="h" className="text-2xl font-extrabold">Addresses</h2>
+        <h2 id="h" className="text-2xl font-medium">Addresses</h2>
         <p className="mt-1 text-sm text-muted">Used for deliveries and as the return address on your shipping labels. Only shared with the other member in an order.</p>
         {addresses.length > 0 ? (
           <ul className="mt-4 grid gap-3 sm:grid-cols-2" role="list">
@@ -41,11 +41,11 @@ export default async function AddressesPage() {
             ))}
           </ul>
         ) : (
-          <p className="mt-4 rounded-md border-2 border-dashed border-ink/40 p-4 text-sm text-muted">You haven&apos;t saved any addresses yet.</p>
+          <p className="mt-4 rounded-xl border border-dashed border-line-strong/60 p-4 text-sm text-muted">You haven&apos;t saved any addresses yet.</p>
         )}
       </section>
       <section aria-labelledby="add-h">
-        <h2 id="add-h" className="text-xl font-extrabold">Add an address</h2>
+        <h2 id="add-h" className="text-xl font-medium">Add an address</h2>
         <AddressForm />
       </section>
     </div>

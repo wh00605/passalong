@@ -13,8 +13,8 @@ export default async function NotificationsPage() {
   const unread = items.filter((n) => !n.readAt).length;
   return (
     <div className="container-page max-w-3xl py-8">
-      <div className="flex flex-wrap items-end justify-between gap-3 border-b-2 border-ink pb-3">
-        <h1 className="text-3xl font-extrabold sm:text-4xl">Notifications</h1>
+      <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line pb-3">
+        <h1 className="text-3xl font-medium sm:text-4xl">Notifications</h1>
         <div className="flex gap-2">
           {unread > 0 && <MarkAllRead />}
           <Link href="/settings/notifications" className="btn-ghost btn-sm">Settings</Link>
@@ -23,7 +23,7 @@ export default async function NotificationsPage() {
       {items.length === 0 ? (
         <p className="mt-8 text-muted">Nothing yet. We&apos;ll let you know about offers, orders and messages here.</p>
       ) : (
-        <ul className="divide-y-2 divide-line" role="list">
+        <ul className="divide-y divide-line" role="list">
           {items.map((n) => {
             const body = (
               <>
@@ -41,7 +41,7 @@ export default async function NotificationsPage() {
             return (
               <li key={n.id} className={n.readAt ? "" : "bg-surface"}>
                 {n.url ? (
-                  <Link href={`/notifications/${n.id}`} className="block px-3 py-4 hover:bg-accent-300/40">{body}</Link>
+                  <Link href={`/notifications/${n.id}`} className="block px-3 py-4 hover:bg-brand-50/40">{body}</Link>
                 ) : (
                   <div className="px-3 py-4">{body}</div>
                 )}

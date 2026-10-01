@@ -19,7 +19,7 @@ export default async function AdminListings({ searchParams }: PageProps<"/admin/
   });
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-extrabold">Listings</h1>
+      <h1 className="text-3xl font-medium">Listings</h1>
       <form className="flex gap-2" role="search">
         <label htmlFor="q" className="sr-only">Search listings</label>
         <input id="q" name="q" defaultValue={q} placeholder="Words, listing ID or seller username" className="input max-w-md" />

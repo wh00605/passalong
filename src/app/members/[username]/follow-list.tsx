@@ -19,11 +19,11 @@ export async function FollowList({ username, kind }: { username: string; kind: "
   return (
     <div className="container-page max-w-2xl py-8">
       <p className="eyebrow"><Link href={`/members/${member.username}`} className="hover:underline">@{member.username}</Link></p>
-      <h1 className="mt-1 text-3xl font-extrabold">{kind === "followers" ? "Followers" : "Following"}</h1>
+      <h1 className="mt-1 text-3xl font-medium">{kind === "followers" ? "Followers" : "Following"}</h1>
       {people.length === 0 ? (
         <p className="mt-6 text-muted">{kind === "followers" ? "No followers yet." : "Not following anyone yet."}</p>
       ) : (
-        <ul className="mt-6 divide-y-2 divide-line" role="list">
+        <ul className="mt-6 divide-y divide-line" role="list">
           {people.map((p) => (
             <li key={p.username}>
               <Link href={`/members/${p.username}`} className="flex items-center gap-3 py-3 hover:bg-surface">

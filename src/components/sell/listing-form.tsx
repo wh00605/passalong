@@ -37,7 +37,7 @@ function Buttons({ isDraft }: { isDraft: boolean }) {
   const { pending, data } = useFormStatus();
   const intent = data?.get("intent");
   return (
-    <div className="sticky bottom-0 z-20 -mx-4 flex flex-wrap justify-end gap-2 border-t-2 border-ink bg-canvas/95 px-4 py-3 backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0">
+    <div className="sticky bottom-0 z-20 -mx-4 flex flex-wrap justify-end gap-2 border-t border-line bg-canvas/95 px-4 py-3 backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0">
       {isDraft && (
         <button type="submit" name="intent" value="draft" className="btn-secondary" disabled={pending}>
           {pending && intent === "draft" ? "Saving…" : "Save draft"}
@@ -172,7 +172,7 @@ export function ListingForm(p: ListingFormProps) {
             {CONDITIONS.map((c) => (
               <label key={c.value} className="relative cursor-pointer">
                 <input type="radio" name="condition" value={c.value} defaultChecked={init?.condition === c.value} className="peer sr-only" />
-                <span className="block h-full rounded-md border-2 border-ink/30 bg-surface p-3 peer-checked:border-ink peer-checked:bg-accent-400 peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink hover:border-ink">
+                <span className="block h-full rounded-xl border border-line bg-surface p-3 peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink hover:border-ink">
                   <span className="block font-semibold">{c.label}</span>
                   <span className="text-sm text-muted peer-checked:text-ink">{c.description}</span>
                 </span>
@@ -198,7 +198,7 @@ export function ListingForm(p: ListingFormProps) {
                     onChange={() => setColours(on ? colours.filter((x) => x !== c.id) : [...colours, c.id])}
                     className="peer sr-only"
                   />
-                  <span className="inline-flex min-h-10 items-center gap-2 rounded-md border-2 border-ink/30 bg-surface px-3 text-sm peer-checked:border-ink peer-checked:bg-accent-400 peer-disabled:opacity-40 peer-focus-visible:outline-3 peer-focus-visible:outline-ink hover:border-ink">
+                  <span className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-line bg-surface px-3 text-sm peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-disabled:opacity-40 peer-focus-visible:outline-3 peer-focus-visible:outline-ink hover:border-ink">
                     <span className="h-4 w-4 rounded-full border border-ink/40" style={{ background: c.hex }} aria-hidden="true" />
                     {c.name}
                   </span>
@@ -244,7 +244,7 @@ export function ListingForm(p: ListingFormProps) {
             {p.parcels.map((ps) => (
               <label key={ps.id} className="relative cursor-pointer">
                 <input type="radio" name="parcelSizeId" value={ps.id} defaultChecked={init?.parcelSizeId === ps.id} className="peer sr-only" />
-                <span className="flex h-full flex-col rounded-md border-2 border-ink/30 bg-surface p-3 peer-checked:border-ink peer-checked:bg-accent-400 peer-focus-visible:outline-3 peer-focus-visible:outline-ink hover:border-ink">
+                <span className="flex h-full flex-col rounded-xl border border-line bg-surface p-3 peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-focus-visible:outline-3 peer-focus-visible:outline-ink hover:border-ink">
                   <span className="flex items-baseline justify-between">
                     <span className="font-semibold">{ps.name}</span>
                     <span className="font-mono text-sm">{formatPence(ps.pricePence)}</span>

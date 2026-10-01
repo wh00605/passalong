@@ -26,7 +26,7 @@ export default async function AdminHelp() {
   const articles = await db.helpArticle.findMany({ orderBy: [{ category: "asc" }, { title: "asc" }] });
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-extrabold">Help articles</h1>
+      <h1 className="text-3xl font-medium">Help articles</h1>
       <details className="card p-4"><summary className="cursor-pointer font-semibold">New article</summary><div className="mt-3"><ArticleForm /></div></details>
       <ul className="space-y-2" role="list">
         {articles.map((a) => (

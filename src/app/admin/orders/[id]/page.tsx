@@ -37,7 +37,7 @@ export default async function AdminOrder({ params }: PageProps<"/admin/orders/[i
   ];
   return (
     <div className="space-y-6">
-      <h1 className="font-mono text-3xl font-extrabold">{o.number}</h1>
+      <h1 className="font-mono text-3xl font-medium">{o.number}</h1>
       <dl className="grid gap-x-6 gap-y-1 text-sm sm:grid-cols-[220px_1fr]">
         {fields.map(([k, v]) => (
           <div key={k} className="contents"><dt className="text-muted">{k}</dt><dd>{v}</dd></div>

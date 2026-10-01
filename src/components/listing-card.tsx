@@ -65,42 +65,38 @@ export function ListingCard({
 
   return (
     <article className="group relative">
-      <div className="relative overflow-hidden rounded-md border-2 border-ink bg-brand-50 transition-[transform,box-shadow] duration-150 group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:shadow-[var(--shadow-tag)] group-focus-within:-translate-x-1 group-focus-within:-translate-y-1 group-focus-within:shadow-[var(--shadow-tag)]">
-        <ListingPhoto photo={listing.photos[0]} alt="" priority={priority} className="aspect-[4/5] w-full" />
+      <div className="relative overflow-hidden rounded-2xl bg-[#f1ede6] ring-brand-600 ring-offset-2 group-focus-within:ring-2">
+        <ListingPhoto photo={listing.photos[0]} alt="" priority={priority} className="aspect-[4/5] w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
         {(listing.status === "RESERVED" || bumped) && (
-          <span
-            className={`absolute top-2 left-2 rounded-sm border-2 border-ink px-1.5 py-0.5 font-mono text-[11px] font-semibold tracking-wider uppercase ${listing.status === "RESERVED" ? "bg-ink text-surface" : "bg-surface text-ink"}`}
-          >
-            {listing.status === "RESERVED" ? "Reserved" : "Bumped"}
+          <span className={`absolute top-3 left-3 rounded-full px-2.5 py-1 text-[11px] font-medium ${listing.status === "RESERVED" ? "bg-brand-600 text-white" : "bg-surface/95 text-ink backdrop-blur"}`}>
+            {listing.status === "RESERVED" ? "Reserved" : "Featured"}
           </span>
         )}
         {!compact && (
-          <span className="absolute bottom-2 left-2 rounded-sm border-2 border-ink bg-accent-400 px-1.5 py-0.5 font-mono text-sm font-bold text-ink">
-            {formatPence(listing.pricePence)}
-          </span>
-        )}
-        {!compact && (
-          <div className="absolute top-2 right-2">
+          <div className="absolute top-3 right-3">
             <FavouriteButton listingId={listing.id} initial={favourited} count={listing.favouriteCount} signedIn={signedIn} title={listing.title} />
           </div>
         )}
       </div>
-      <div className={compact ? "mt-1.5" : "mt-2.5 space-y-0.5"}>
-        <h3 className={`line-clamp-1 font-sans font-semibold tracking-normal ${compact ? "text-xs" : "text-sm"}`}>
+      <div className={compact ? "mt-2" : "mt-3 space-y-0.5 px-0.5"}>
+        {!compact && brand && <p className="line-clamp-1 text-[0.7rem] font-medium tracking-[0.12em] text-accent-600 uppercase">{brand}</p>}
+        <h3 className={`line-clamp-1 font-sans font-normal tracking-normal text-ink ${compact ? "text-xs" : "text-[0.95rem]"}`}>
           <Link href={listingPath(listing)} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">
             {listing.title}
             {compact && <span className="sr-only">, {formatPence(listing.pricePence)}</span>}
           </Link>
         </h3>
         {compact ? (
-          <p className="font-mono text-xs" aria-hidden="true">{formatPence(listing.pricePence)}</p>
+          <p className="text-xs font-medium" aria-hidden="true">{formatPence(listing.pricePence)}</p>
         ) : (
           <>
-            <p className="line-clamp-1 font-mono text-xs text-muted">
-              {[brand, listing.size?.label, conditionLabel(listing.condition)].filter(Boolean).join(" / ")}
+            <p className="line-clamp-1 text-xs text-muted">
+              {[listing.size?.label, conditionLabel(listing.condition)].filter(Boolean).join(" · ")}
             </p>
-            <p className="text-xs text-muted">
-              <span className="font-semibold text-ink">{formatPence(total)}</span> incl. Buyer Protection
+            <p className="flex items-baseline gap-2 pt-1">
+              {/* Headline price includes the mandatory Buyer Protection fee (DMCC Act 2024). */}
+              <span className="text-[0.95rem] font-semibold text-ink tabular-nums">{formatPence(total)}</span>
+              <span className="text-xs text-muted tabular-nums">incl. protection · item {formatPence(listing.pricePence)}</span>
             </p>
           </>
         )}

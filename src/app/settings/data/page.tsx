@@ -14,7 +14,7 @@ export default async function DataPage() {
   return (
     <div className="space-y-10">
       <section aria-labelledby="export-h">
-        <h2 id="export-h" className="text-2xl font-extrabold">Download your data</h2>
+        <h2 id="export-h" className="text-2xl font-medium">Download your data</h2>
         <p className="mt-1 max-w-xl text-sm text-muted">
           Get a copy of the personal data we hold about you – your profile, listings, orders, messages, reviews and settings – as a JSON file.
         </p>
@@ -30,8 +30,8 @@ export default async function DataPage() {
         )}
       </section>
 
-      <section aria-labelledby="delete-h" className="rounded-md border-2 border-danger p-5">
-        <h2 id="delete-h" className="text-2xl font-extrabold text-danger">Delete your account</h2>
+      <section aria-labelledby="delete-h" className="rounded-xl border border-danger p-5">
+        <h2 id="delete-h" className="text-2xl font-medium text-danger">Delete your account</h2>
         {deletion ? (
           <>
             <p className="mt-2">

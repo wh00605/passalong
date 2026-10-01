@@ -36,7 +36,7 @@ export default async function DisputePage({ params }: PageProps<"/orders/[id]/di
     return (
       <div className="container-page max-w-2xl py-8">
         <p className="eyebrow">Order {order.number}</p>
-        <h1 className="mt-1 text-4xl font-extrabold">Report a problem</h1>
+        <h1 className="mt-1 text-4xl font-medium">Report a problem</h1>
         <p className="mt-2 text-muted">
           We&apos;ll hold the payment while you and the seller sort it out. If you can&apos;t agree, our team will decide. Reports must be made within {settings.disputeWindowDays} days of delivery.
         </p>
@@ -48,7 +48,7 @@ export default async function DisputePage({ params }: PageProps<"/orders/[id]/di
               {Object.entries(REASON_LABELS).map(([value, label]) => (
                 <label key={value} className="relative cursor-pointer">
                   <input type="radio" name="reason" value={value} className="peer sr-only" required />
-                  <span className="block rounded-md border-2 border-ink/30 bg-surface p-3 font-semibold peer-checked:border-ink peer-checked:bg-accent-400 peer-focus-visible:outline-3 peer-focus-visible:outline-ink">{label}</span>
+                  <span className="block rounded-xl border border-line bg-surface p-3 font-semibold peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-focus-visible:outline-3 peer-focus-visible:outline-ink">{label}</span>
                 </label>
               ))}
             </div>
@@ -66,7 +66,7 @@ export default async function DisputePage({ params }: PageProps<"/orders/[id]/di
   return (
     <div className="container-page max-w-3xl py-8">
       <p className="eyebrow">Order {order.number} · {REASON_LABELS[d.reason]}</p>
-      <h1 className="mt-1 text-4xl font-extrabold">{DISPUTE_STATUS_LABEL[d.status]}</h1>
+      <h1 className="mt-1 text-4xl font-medium">{DISPUTE_STATUS_LABEL[d.status]}</h1>
       <p className="mt-2 text-sm text-muted">Payment is on hold while this case is open.</p>
 
       {open && (
@@ -89,7 +89,7 @@ export default async function DisputePage({ params }: PageProps<"/orders/[id]/di
       )}
 
       <section className="mt-8" aria-labelledby="timeline-h">
-        <h2 id="timeline-h" className="border-b-2 border-ink pb-2 text-2xl font-extrabold">Case history</h2>
+        <h2 id="timeline-h" className="border-b border-line pb-2 text-2xl font-medium">Case history</h2>
         <ol className="mt-4 space-y-3 border-l-2 border-ink pl-4">
           {d.events.map((e) => (
             <li key={e.id}>
@@ -101,7 +101,7 @@ export default async function DisputePage({ params }: PageProps<"/orders/[id]/di
       </section>
 
       <section className="mt-8" aria-labelledby="evidence-h">
-        <h2 id="evidence-h" className="border-b-2 border-ink pb-2 text-2xl font-extrabold">Evidence</h2>
+        <h2 id="evidence-h" className="border-b border-line pb-2 text-2xl font-medium">Evidence</h2>
         {d.evidence.length === 0 ? (
           <p className="mt-3 text-sm text-muted">No evidence added yet.</p>
         ) : (

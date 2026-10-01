@@ -10,7 +10,7 @@ import { SaveSearchButton } from "@/components/search/save-search-button";
 
 function Group({ title, children, open = false }: { title: string; children: React.ReactNode; open?: boolean }) {
   return (
-    <details open={open} className="group border-b-2 border-line py-2">
+    <details open={open} className="group border-b border-line py-2">
       <summary className="flex min-h-10 cursor-pointer list-none items-center justify-between font-semibold">
         {title}
         <span aria-hidden="true" className="font-mono transition-transform group-open:rotate-45">+</span>
@@ -138,9 +138,9 @@ export async function SearchView({
 
   return (
     <div className="container-page py-6">
-      <div className="flex flex-wrap items-end justify-between gap-3 border-b-2 border-ink pb-3">
+      <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line pb-3">
         <div>
-          <h1 className="text-3xl font-extrabold sm:text-4xl">{heading}</h1>
+          <h1 className="text-3xl font-medium sm:text-4xl">{heading}</h1>
           <p className="mt-1 font-mono text-sm text-muted" aria-live="polite">{results.total.toLocaleString("en-GB")} item{results.total === 1 ? "" : "s"}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -162,7 +162,7 @@ export async function SearchView({
         <ul className="mt-4 flex flex-wrap gap-2" aria-label="Active filters">
           {chips.map((c) => (
             <li key={c.label + c.href}>
-              <Link href={c.href} className="inline-flex min-h-9 items-center gap-1 rounded-full border-2 border-ink bg-accent-400 px-3 text-sm font-semibold">
+              <Link href={c.href} className="inline-flex min-h-9 items-center gap-1 rounded-full border border-line bg-accent-400 px-3 text-sm font-semibold">
                 {c.label} <X className="h-3.5 w-3.5" aria-hidden="true" /><span className="sr-only">(remove filter)</span>
               </Link>
             </li>

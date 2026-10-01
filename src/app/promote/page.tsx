@@ -18,11 +18,11 @@ export default async function PromotePage({ searchParams }: PageProps<"/promote"
 
   return (
     <div className="container-page max-w-3xl py-8">
-      <h1 className="border-b-2 border-ink pb-3 text-4xl font-extrabold">Promote</h1>
+      <h1 className="border-b border-line pb-3 text-4xl font-medium">Promote</h1>
       <div className="mt-6 grid gap-6 md:grid-cols-2">
         <section className="card flex flex-col p-5" aria-labelledby="bump-h">
           <p className="eyebrow">One item</p>
-          <h2 id="bump-h" className="mt-1 text-2xl font-extrabold">Bump</h2>
+          <h2 id="bump-h" className="mt-1 text-2xl font-medium">Bump</h2>
           <p className="mt-1 font-mono text-lg">{formatPence(s.bumpPricePence)} · {s.bumpDays} days</p>
           <p className="mt-2 flex-1 text-sm">Your item is boosted to the top of search results and feeds, with a “Bumped” label.</p>
           {listing ? (
@@ -37,7 +37,7 @@ export default async function PromotePage({ searchParams }: PageProps<"/promote"
         </section>
         <section className="card flex flex-col p-5" aria-labelledby="spot-h">
           <p className="eyebrow">Whole wardrobe</p>
-          <h2 id="spot-h" className="mt-1 text-2xl font-extrabold">Wardrobe spotlight</h2>
+          <h2 id="spot-h" className="mt-1 text-2xl font-medium">Wardrobe spotlight</h2>
           <p className="mt-1 font-mono text-lg">{formatPence(s.spotlightPricePence)} · {s.spotlightDays} days</p>
           <p className="mt-2 flex-1 text-sm">Your wardrobe is featured on the home page and your items rank higher. Needs at least 5 live items.</p>
           {activeSpotlight ? (

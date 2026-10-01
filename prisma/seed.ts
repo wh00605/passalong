@@ -16,6 +16,7 @@ import {
 } from "./seed-data/catalogue";
 import { DEMO_PASSWORD, SAMPLE_LISTINGS, SAMPLE_USERS } from "./seed-data/sample";
 import { HELP_ARTICLES } from "./seed-data/help";
+import { kindFor, stillLifeSvg } from "./seed-data/art";
 import { NotificationType } from "../src/generated/prisma/enums";
 
 const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL! }) });
@@ -74,31 +75,6 @@ async function seedCatalogue() {
   console.log("✓ Catalogue, settings and help articles");
 }
 
-function sampleImageSvg(title: string, hex: string, index: number) {
-  const words = title.split(" ");
-  const lines: string[] = [];
-  let line = "";
-  for (const w of words) {
-    if ((line + " " + w).trim().length > 18) {
-      lines.push(line.trim());
-      line = w;
-    } else line += " " + w;
-  }
-  lines.push(line.trim());
-  const text = lines
-    .slice(0, 4)
-    .map((l, i) => `<text x="400" y="${470 + i * 64}" font-size="52" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle" fill="#1c1a24">${l.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</text>`)
-    .join("");
-  return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${hex}" stop-opacity="0.55"/><stop offset="1" stop-color="#faf8f5"/></linearGradient></defs>
-  <rect width="800" height="1000" fill="url(#g)"/>
-  <rect x="80" y="160" width="640" height="680" rx="40" fill="#ffffff" fill-opacity="0.75"/>
-  <circle cx="400" cy="320" r="70" fill="${hex}" stroke="#1c1a24" stroke-width="4"/>
-  ${text}
-  <text x="400" y="790" font-size="30" font-family="Arial, sans-serif" text-anchor="middle" fill="#55515f">Sample photo ${index + 1}</text>
-</svg>`);
-}
-
 async function seedSample() {
   const existing = await db.user.count();
   if (existing > 0) {
@@ -155,7 +131,8 @@ async function seedSample() {
     const photoCount = 2 + (i % 3);
     const photos = [];
     for (let p = 0; p < photoCount; p++) {
-      const png = await sharp(sampleImageSvg(l.title, colours.get(l.colours[0])?.hex ?? "#999999", p)).jpeg().toBuffer();
+      const svg = stillLifeSvg({ kind: kindFor(l.category, l.title), hex: colours.get(l.colours[0])?.hex ?? "#8c857c", seed: i, angle: p });
+      const png = await sharp(svg).jpeg({ quality: 90 }).toBuffer();
       photos.push({ ...(await processAndStoreImage(png, { prefix: `listings/${sellerId}`, visibility: "public" })), position: p, uploaderId: sellerId });
     }
 

@@ -20,7 +20,7 @@ export default async function EditListingPage({ params }: PageProps<"/items/[id]
   return (
     <div className="container-page max-w-3xl py-8">
       <p className="eyebrow">{listing.status === "DRAFT" ? "Draft" : "Edit listing"}</p>
-      <h1 className="mt-1 text-4xl font-extrabold">{listing.title || "Untitled draft"}</h1>
+      <h1 className="mt-1 text-4xl font-medium">{listing.title || "Untitled draft"}</h1>
       <div className="mt-6">
         <ListingForm
           {...data}

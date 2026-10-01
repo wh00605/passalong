@@ -7,7 +7,7 @@ export default async function HolidayPage() {
   const user = await requireUser();
   return (
     <section aria-labelledby="h">
-      <h2 id="h" className="text-2xl font-extrabold">Holiday mode</h2>
+      <h2 id="h" className="text-2xl font-medium">Holiday mode</h2>
       <p className="mt-1 max-w-xl text-sm text-muted">
         Going away? Holiday mode hides all your items from search, the feed and your wardrobe page so nobody can buy them. Orders you&apos;ve already sold still need to be posted.
       </p>
