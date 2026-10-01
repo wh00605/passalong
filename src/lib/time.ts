@@ -38,6 +38,19 @@ export function addWorkingDays(start: Date, days: number): Date {
   return d;
 }
 
+export function isFuture(date: Date | null | undefined): boolean {
+  return !!date && date.getTime() > Date.now();
+}
+
+export function daysAgo(days: number): Date {
+  return new Date(Date.now() - days * 86_400_000);
+}
+
+/** YYYY-MM-DD for tomorrow (UTC) – used as a min date in date pickers. */
+export function tomorrowIso(): string {
+  return new Date(Date.now() + 86_400_000).toISOString().slice(0, 10);
+}
+
 export function addDays(start: Date, days: number): Date {
   return new Date(start.getTime() + days * 86_400_000);
 }

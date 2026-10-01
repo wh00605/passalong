@@ -4,6 +4,7 @@ import { formatPence } from "@/lib/money";
 import { priceWithProtection } from "@/lib/fees";
 import { listingPath } from "@/lib/slug";
 import { conditionLabel } from "@/lib/conditions";
+import { isFuture } from "@/lib/time";
 import type { ListingCardData } from "@/lib/listings";
 import type { PlatformSettings } from "@/lib/settings-defaults";
 import { FavouriteButton } from "@/components/favourite-button";
@@ -59,7 +60,7 @@ export function ListingCard({
   compact?: boolean;
 }) {
   const brand = listing.brand?.name ?? listing.customBrand;
-  const bumped = listing.bumpedUntil && listing.bumpedUntil.getTime() > Date.now();
+  const bumped = isFuture(listing.bumpedUntil);
   const total = priceWithProtection(listing.pricePence, fees);
 
   return (

@@ -133,7 +133,6 @@ export function ChatThread(props: {
     });
   }
 
-  let lastDay = "";
   const myLastSeenIdx = otherReadAt ? messages.findLastIndex((m) => m.senderId === me.id && m.createdAt <= otherReadAt) : -1;
 
   return (
@@ -190,8 +189,7 @@ export function ChatThread(props: {
         {messages.map((m, idx) => {
           const mine = m.senderId === me.id;
           const d = day(m.createdAt);
-          const showDay = d !== lastDay;
-          lastDay = d;
+          const showDay = idx === 0 || day(messages[idx - 1].createdAt) !== d;
           return (
             <li key={m.id}>
               {showDay && <p className="my-3 text-center font-mono text-[11px] tracking-wider text-muted uppercase">{d}</p>}

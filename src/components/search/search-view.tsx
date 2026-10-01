@@ -8,6 +8,27 @@ import { getCurrentUser } from "@/lib/session";
 import { ListingGrid } from "@/components/listing-grid";
 import { SaveSearchButton } from "@/components/search/save-search-button";
 
+function Group({ title, children, open = false }: { title: string; children: React.ReactNode; open?: boolean }) {
+  return (
+    <details open={open} className="group border-b-2 border-line py-2">
+      <summary className="flex min-h-10 cursor-pointer list-none items-center justify-between font-semibold">
+        {title}
+        <span aria-hidden="true" className="font-mono transition-transform group-open:rotate-45">+</span>
+      </summary>
+      <div className="pt-2 pb-3">{children}</div>
+    </details>
+  );
+}
+
+function Check({ name, value, label, checked }: { name: string; value: string; label: React.ReactNode; checked: boolean }) {
+  return (
+    <label className="flex min-h-9 cursor-pointer items-center gap-2 text-sm">
+      <input type="checkbox" name={name} value={value} defaultChecked={checked} className="h-4 w-4 accent-ink" />
+      {label}
+    </label>
+  );
+}
+
 export async function SearchView({
   params,
   basePath,
@@ -47,22 +68,6 @@ export async function SearchView({
 
   const hidden = (name: string, values: string[] | string | undefined) =>
     (Array.isArray(values) ? values : values ? [values] : []).map((v) => <input key={`${name}-${v}`} type="hidden" name={name} value={v} />);
-
-  const Group = ({ title, children, open = false }: { title: string; children: React.ReactNode; open?: boolean }) => (
-    <details open={open} className="group border-b-2 border-line py-2">
-      <summary className="flex min-h-10 cursor-pointer list-none items-center justify-between font-semibold">
-        {title}
-        <span aria-hidden="true" className="font-mono transition-transform group-open:rotate-45">+</span>
-      </summary>
-      <div className="pt-2 pb-3">{children}</div>
-    </details>
-  );
-  const Check = ({ name, value, label, checked }: { name: string; value: string; label: React.ReactNode; checked: boolean }) => (
-    <label className="flex min-h-9 cursor-pointer items-center gap-2 text-sm">
-      <input type="checkbox" name={name} value={value} defaultChecked={checked} className="h-4 w-4 accent-ink" />
-      {label}
-    </label>
-  );
 
   const filters = (
     <form method="get" action={basePath} className="space-y-1" aria-label="Filters">

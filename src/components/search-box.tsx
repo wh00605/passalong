@@ -10,7 +10,8 @@ export function SearchBox({ className = "" }: { className?: string }) {
   const router = useRouter();
   const params = useSearchParams();
   const [value, setValue] = useState(params.get("q") ?? "");
-  const [items, setItems] = useState<Suggestion[]>([]);
+  const [fetched, setItems] = useState<Suggestion[]>([]);
+  const items = value.trim().length < 2 ? [] : fetched;
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const listId = useId();
@@ -18,10 +19,7 @@ export function SearchBox({ className = "" }: { className?: string }) {
 
   useEffect(() => {
     const q = value.trim();
-    if (q.length < 2) {
-      setItems([]);
-      return;
-    }
+    if (q.length < 2) return;
     const t = setTimeout(async () => {
       abortRef.current?.abort();
       const ctrl = new AbortController();

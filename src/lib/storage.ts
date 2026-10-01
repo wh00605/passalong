@@ -9,7 +9,7 @@ export type Visibility = "public" | "private";
 
 const LOCAL_ROOT = path.resolve(".uploads");
 
-function useSupabase() {
+function supabaseEnabled() {
   return (
     Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) &&
     process.env.LOCAL_UPLOADS !== "true"
@@ -36,7 +36,7 @@ function assertSafeKey(key: string) {
 
 export async function putObject(key: string, body: Buffer, contentType: string, visibility: Visibility) {
   assertSafeKey(key);
-  if (useSupabase()) {
+  if (supabaseEnabled()) {
     const { error } = await client().storage.from(bucket(visibility)).upload(key, body, {
       contentType,
       upsert: true,
@@ -55,7 +55,7 @@ export async function putObject(key: string, body: Buffer, contentType: string, 
 
 export async function getObject(key: string, visibility: Visibility): Promise<Buffer | null> {
   assertSafeKey(key);
-  if (useSupabase()) {
+  if (supabaseEnabled()) {
     const { data, error } = await client().storage.from(bucket(visibility)).download(key);
     if (error || !data) return null;
     return Buffer.from(await data.arrayBuffer());
@@ -70,7 +70,7 @@ export async function getObject(key: string, visibility: Visibility): Promise<Bu
 export async function deleteObjects(keys: string[], visibility: Visibility) {
   if (keys.length === 0) return;
   keys.forEach(assertSafeKey);
-  if (useSupabase()) {
+  if (supabaseEnabled()) {
     await client().storage.from(bucket(visibility)).remove(keys);
     return;
   }
@@ -79,7 +79,7 @@ export async function deleteObjects(keys: string[], visibility: Visibility) {
 
 /** URL for a public object. */
 export function publicUrl(key: string): string {
-  if (useSupabase()) {
+  if (supabaseEnabled()) {
     return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${bucket("public")}/${key}`;
   }
   return `/api/files/public/${key}`;
@@ -87,7 +87,7 @@ export function publicUrl(key: string): string {
 
 /** Short-lived signed URL for a private object (Supabase only). */
 export async function signedUrl(key: string, seconds = 300): Promise<string | null> {
-  if (!useSupabase()) return null;
+  if (!supabaseEnabled()) return null;
   const { data } = await client().storage.from(bucket("private")).createSignedUrl(key, seconds);
   return data?.signedUrl ?? null;
 }

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Star } from "lucide-react";
 import { ActionForm, Field } from "@/components/ui/form";
 import { confirmReceivedAction, sellerCancelAction, confirmHandoverAction } from "@/app/actions/orders";
+import { tomorrowIso } from "@/lib/time";
 import { manualTrackingAction, retryLabelAction, bookCollectionAction, leaveReviewAction } from "@/app/actions/aftersale";
 
 function useRun() {
@@ -106,7 +107,7 @@ export function CollectionForm({ orderId }: { orderId: string }) {
   const [date, setDate] = useState("");
   const [msg, setMsg] = useState("");
   const { pending, error, run } = useRun();
-  const min = new Date(Date.now() + 86_400_000).toISOString().slice(0, 10);
+  const [min] = useState(tomorrowIso);
   return (
     <details className="rounded-md border-2 border-ink/30 p-3">
       <summary className="cursor-pointer text-sm font-semibold">Prefer a collection from home?</summary>

@@ -12,7 +12,7 @@ import { listingIdFromParam, listingPath } from "@/lib/slug";
 import { photoUrl } from "@/lib/storage";
 import { formatPence } from "@/lib/money";
 import { priceWithProtection } from "@/lib/fees";
-import { timeAgo } from "@/lib/time";
+import { daysAgo, timeAgo } from "@/lib/time";
 import { siteUrl } from "@/lib/env";
 import { Gallery } from "@/components/listing/gallery";
 import { OwnerControls } from "@/components/listing/owner-controls";
@@ -96,7 +96,7 @@ export default async function ItemPage({ params }: PageProps<"/items/[id]">) {
   // Record a view (deduplicated per member per day) after the response is sent.
   if (viewer && !isOwner) {
     after(async () => {
-      const recent = await db.listingView.findFirst({ where: { listingId: l.id, userId: viewer.id, createdAt: { gt: new Date(Date.now() - 86_400_000) } } });
+      const recent = await db.listingView.findFirst({ where: { listingId: l.id, userId: viewer.id, createdAt: { gt: daysAgo(1) } } });
       if (!recent) {
         await db.$transaction([
           db.listingView.create({ data: { listingId: l.id, userId: viewer.id } }),

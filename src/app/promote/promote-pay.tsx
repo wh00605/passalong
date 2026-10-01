@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { startPromotionAction } from "@/app/actions/aftersale";
 
-function Confirm({ label }: { label: string }) {
+function Confirm() {
   const stripe = useStripe();
   const elements = useElements();
   const [busy, setBusy] = useState(false);
@@ -44,7 +44,7 @@ export function PromotePay({ type, listingId, label, configured, publishableKey 
   if (secret && stripePromise) {
     return (
       <Elements stripe={stripePromise} options={{ clientSecret: secret }}>
-        <Confirm label={label} />
+        <Confirm />
       </Elements>
     );
   }
