@@ -41,7 +41,7 @@ export default async function AddressesPage() {
             ))}
           </ul>
         ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-line-strong/60 p-4 text-sm text-muted">You haven&apos;t saved any addresses yet.</p>
+          <p className="mt-4 rounded-none border border-dashed border-line-strong/60 p-4 text-sm text-muted">You haven&apos;t saved any addresses yet.</p>
         )}
       </section>
       <section aria-labelledby="add-h">

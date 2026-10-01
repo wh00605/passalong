@@ -39,7 +39,7 @@ export default async function DraftsPage({ searchParams }: PageProps<"/drafts">)
         <Link href="/sell" className="btn-accent">List an item</Link>
       </div>
       {pending > 0 && (
-        <p className="mt-4 rounded-xl border border-line bg-accent-300 p-3 text-sm">
+        <p className="mt-4 rounded-none border border-line bg-accent-300 p-3 text-sm">
           {pending} item{pending > 1 ? "s are" : " is"} being checked by our team and will go live once approved.
         </p>
       )}
@@ -56,7 +56,7 @@ export default async function DraftsPage({ searchParams }: PageProps<"/drafts">)
         <ul className="mt-6 divide-y divide-line" role="list">
           {items.map((l) => (
             <li key={l.id} className="flex items-center gap-4 py-3">
-              <ListingPhoto photo={l.photos[0]} alt="" className="h-20 w-16 shrink-0 rounded-lg border border-line" sizes="64px" />
+              <ListingPhoto photo={l.photos[0]} alt="" className="h-20 w-16 shrink-0 rounded-none border border-line" sizes="64px" />
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold">{l.title || "Untitled draft"}</p>
                 <p className="font-mono text-xs text-muted">

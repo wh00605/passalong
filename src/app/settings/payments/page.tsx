@@ -8,7 +8,7 @@ export default function PaymentMethodsPage() {
         Cards, Apple Pay and Google Pay are handled securely by Stripe. Passalong never sees or stores your full card number.
       </p>
       {!integrations.stripe() && (
-        <p className="mt-4 rounded-xl border border-dashed border-line-strong/60 p-4 text-sm text-muted">
+        <p className="mt-4 rounded-none border border-dashed border-line-strong/60 p-4 text-sm text-muted">
           Payments aren&apos;t set up on this site yet. {/* TODO(keys): STRIPE_SECRET_KEY – saved cards UI arrives in Phase 4. */}
         </p>
       )}

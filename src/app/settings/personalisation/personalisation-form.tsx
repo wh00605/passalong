@@ -7,7 +7,7 @@ export function Chip({ name, value, label, defaultChecked }: { name: string; val
   return (
     <label className="relative inline-flex cursor-pointer">
       <input type="checkbox" name={name} value={value} defaultChecked={defaultChecked} className="peer sr-only" />
-      <span className="inline-flex min-h-10 items-center rounded-xl border border-line bg-surface px-3 text-sm font-medium peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink hover:border-ink">
+      <span className="inline-flex min-h-10 items-center rounded-none border border-line bg-surface px-3 text-sm font-medium peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink hover:border-ink">
         {label}
       </span>
     </label>

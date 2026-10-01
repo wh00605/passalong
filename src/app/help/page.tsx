@@ -37,7 +37,7 @@ export default async function HelpPage({ searchParams }: PageProps<"/help">) {
         ))}
       </div>
       {articles.length === 0 && <p className="mt-6">No articles match. Try different words, or contact us.</p>}
-      <section className="mt-10 rounded-xl border border-line bg-accent-300 p-6" aria-labelledby="contact-h">
+      <section className="mt-10 rounded-none border border-line bg-accent-300 p-6" aria-labelledby="contact-h">
         <h2 id="contact-h" className="text-2xl font-medium">Still stuck?</h2>
         <p className="mt-1">Our team replies within 2 working days.</p>
         <Link href="/contact" className="btn-primary mt-4">Contact us</Link>

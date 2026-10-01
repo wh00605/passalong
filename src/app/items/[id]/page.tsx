@@ -160,7 +160,7 @@ export default async function ItemPage({ params }: PageProps<"/items/[id]">) {
       </nav>
 
       {l.moderationStatus !== "OK" && (isOwner || isStaff(viewer)) && (
-        <p className="mb-4 rounded-xl border border-line bg-accent-300 p-3 text-sm font-semibold">
+        <p className="mb-4 rounded-none border border-line bg-accent-300 p-3 text-sm font-semibold">
           {l.moderationStatus === "PENDING_REVIEW" ? "This item is being reviewed by our team and isn't visible to buyers yet." : "This item was removed by our team."}
         </p>
       )}
@@ -210,7 +210,7 @@ export default async function ItemPage({ params }: PageProps<"/items/[id]">) {
                   </div>
                 </>
               ) : (
-                <p className="rounded-xl border border-line p-3 text-sm text-muted">
+                <p className="rounded-none border border-line p-3 text-sm text-muted">
                   {blocked ? "You can't buy from this member." : l.status === "SOLD" ? "This item has sold." : reservedForOther ? "This item is reserved for another buyer." : "This item isn't available right now."}
                 </p>
               )}
@@ -218,7 +218,7 @@ export default async function ItemPage({ params }: PageProps<"/items/[id]">) {
             </div>
           )}
 
-          <p className="flex items-start gap-3 rounded-xl border border-line bg-surface p-3 text-sm">
+          <p className="flex items-start gap-3 rounded-none border border-line bg-surface p-3 text-sm">
             <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <span>
               <strong>Buyer Protection.</strong> Pay through Passalong and we hold the money until you confirm the item is as described.{" "}

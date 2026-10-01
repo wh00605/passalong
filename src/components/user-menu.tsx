@@ -50,7 +50,7 @@ export function UserMenu({
     <div ref={ref} className="relative">
       <button
         type="button"
-        className="flex min-h-11 items-center gap-1 rounded-xl border border-transparent px-1 hover:border-ink"
+        className="flex min-h-11 items-center gap-1 rounded-none border border-transparent px-1 hover:border-ink"
         aria-expanded={open}
         aria-controls="user-menu"
         onClick={() => setOpen((o) => !o)}
@@ -62,7 +62,7 @@ export function UserMenu({
       <div
         id="user-menu"
         hidden={!open}
-        className="absolute right-0 z-50 mt-2 w-60 overflow-hidden rounded-xl border border-line bg-surface py-1 shadow-[var(--shadow-tag)]"
+        className="absolute right-0 z-50 mt-2 w-60 overflow-hidden rounded-none border border-line bg-surface py-1 shadow-[var(--shadow-tag)]"
       >
         <p className="border-b border-line px-4 py-2 font-mono text-xs">
           Signed in as <strong>@{user.username}</strong>

@@ -60,7 +60,7 @@ export function AdminAction({
       {!open ? (
         <button type="button" className={btn} onClick={() => setOpen(true)}>{label}</button>
       ) : (
-        <span className="block space-y-2 rounded-xl border border-line bg-surface p-3">
+        <span className="block space-y-2 rounded-none border border-line bg-surface p-3">
           {fields.map((f) => (
             <span key={f} className="block">
               <label htmlFor={`${uid}-${f}`} className="label text-xs">{LABELS[f]}</label>

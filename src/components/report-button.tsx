@@ -36,7 +36,7 @@ export function ReportButton({
         <Flag className="h-4 w-4" aria-hidden="true" />
         {label}
       </button>
-      <dialog ref={ref} aria-labelledby={titleId} className="m-auto w-[min(32rem,calc(100%-2rem))] rounded-xl border border-line p-0 shadow-[var(--shadow-tag)] backdrop:bg-ink/60">
+      <dialog ref={ref} aria-labelledby={titleId} className="m-auto w-[min(32rem,calc(100%-2rem))] rounded-none border border-line p-0 shadow-[var(--shadow-tag)] backdrop:bg-ink/60">
         <form action={action} className="space-y-4 p-6">
           <h2 id={titleId} className="text-lg font-bold">Report this {noun}</h2>
           <FormMessage state={state} />
@@ -48,7 +48,7 @@ export function ReportButton({
                 <legend className="label">What&apos;s wrong?</legend>
                 <div className="space-y-1">
                   {REPORT_REASONS[targetType].map(([value, text]) => (
-                    <label key={value} className="flex min-h-10 items-center gap-3 rounded-lg px-2 hover:bg-brand-50">
+                    <label key={value} className="flex min-h-10 items-center gap-3 rounded-none px-2 hover:bg-brand-50">
                       <input type="radio" name="reason" value={value} required className="h-4 w-4" />
                       {text}
                     </label>

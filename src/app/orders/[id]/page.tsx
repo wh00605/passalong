@@ -84,7 +84,7 @@ export default async function OrderPage({ params }: PageProps<"/orders/[id]">) {
               </>
             ) : (
               <>
-                {outbound?.lastError && <p className="rounded-xl border border-line bg-accent-300 p-3 text-sm">{outbound.lastError}</p>}
+                {outbound?.lastError && <p className="rounded-none border border-line bg-accent-300 p-3 text-sm">{outbound.lastError}</p>}
                 <RetryLabel orderId={order.id} />
                 <ManualTrackingForm orderId={order.id} />
               </>
@@ -111,7 +111,7 @@ export default async function OrderPage({ params }: PageProps<"/orders/[id]">) {
           <BuyerActions orderId={order.id} delivered={order.status === "DELIVERED"} windowEnds={windowEnds?.toISOString() ?? null} />
         )}
         {order.dispute && (
-          <Link href={`/orders/${order.id}/dispute`} className="block rounded-xl border border-hot bg-surface p-4 font-semibold hover:bg-brand-50">
+          <Link href={`/orders/${order.id}/dispute`} className="block rounded-none border border-hot bg-surface p-4 font-semibold hover:bg-brand-50">
             A problem was reported on this order → view the case
           </Link>
         )}

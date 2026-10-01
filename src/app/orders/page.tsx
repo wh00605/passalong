@@ -49,7 +49,7 @@ export default async function OrdersPage({ searchParams }: PageProps<"/orders">)
                   <span className="block font-mono text-xs text-muted">
                     {o.number} · {tab === "sold" ? `to ${o.buyer.name}` : `from ${o.seller.name}`} · {timeAgo(o.createdAt)}
                   </span>
-                  <span className="mt-1 inline-block rounded-lg border border-ink px-1.5 font-mono text-[11px] uppercase">{ORDER_STATUS_LABEL[o.status]}</span>
+                  <span className="mt-1 inline-block rounded-none border border-ink px-1.5 font-mono text-[11px] uppercase">{ORDER_STATUS_LABEL[o.status]}</span>
                 </span>
                 <span className="text-right">
                   <span className="block font-mono font-semibold">{formatPence(tab === "sold" ? o.sellerEarningsPence : o.totalPence)}</span>

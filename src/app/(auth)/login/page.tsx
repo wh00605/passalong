@@ -20,7 +20,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
         New to Passalong? <Link href="/signup" className="link">Create an account</Link>
       </p>
       {sp.reset === "1" && (
-        <p role="status" className="mb-4 rounded-lg bg-success-bg px-4 py-3 text-sm text-success">
+        <p role="status" className="mb-4 rounded-none bg-success-bg px-4 py-3 text-sm text-success">
           Your password has been changed. Please log in.
         </p>
       )}

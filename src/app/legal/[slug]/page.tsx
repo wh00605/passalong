@@ -27,7 +27,7 @@ export default async function LegalPage({ params }: PageProps<"/legal/[slug]">) 
       <p className="mt-1 font-mono text-xs text-muted">Last updated {doc.updated}</p>
       <article className="mt-8"><Markdown source={doc.body} /></article>
       {slug === "cookies" && (
-        <section id="manage" className="mt-8 rounded-xl border border-line p-5">
+        <section id="manage" className="mt-8 rounded-none border border-line p-5">
           <h2 className="text-xl font-medium">Your cookie choices</h2>
           <CookieSettingsButton />
         </section>

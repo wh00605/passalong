@@ -65,7 +65,7 @@ export function ListingCard({
 
   return (
     <article className="group relative">
-      <div className="relative overflow-hidden rounded-2xl bg-[#f1ede6] ring-brand-600 ring-offset-2 group-focus-within:ring-2">
+      <div className="relative overflow-hidden rounded-none bg-[#f1ede6] ring-brand-600 ring-offset-2 group-focus-within:ring-2">
         <ListingPhoto photo={listing.photos[0]} alt="" priority={priority} className="aspect-[4/5] w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
         {(listing.status === "RESERVED" || bumped) && (
           <span className={`absolute top-3 left-3 rounded-full px-2.5 py-1 text-[11px] font-medium ${listing.status === "RESERVED" ? "bg-brand-600 text-white" : "bg-surface/95 text-ink backdrop-blur"}`}>

@@ -67,14 +67,14 @@ export function SubmitButton({
 export function FormMessage({ state }: { state: ActionState }) {
   if (state.error) {
     return (
-      <div role="alert" className="rounded-lg border border-danger bg-danger-bg px-4 py-3 text-sm text-danger">
+      <div role="alert" className="rounded-none border border-danger bg-danger-bg px-4 py-3 text-sm text-danger">
         {state.error}
       </div>
     );
   }
   if (state.message) {
     return (
-      <div role="status" className="rounded-lg border border-success bg-success-bg px-4 py-3 text-sm text-success">
+      <div role="status" className="rounded-none border border-success bg-success-bg px-4 py-3 text-sm text-success">
         {state.message}
       </div>
     );

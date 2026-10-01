@@ -13,12 +13,12 @@ export function LogoMark({ className = "h-8 w-8", inverted = false }: { classNam
   );
 }
 
-export function Logo({ compactOnSmall = false }: { compactOnSmall?: boolean }) {
+export function Logo({ compactOnSmall = false, centred = false }: { compactOnSmall?: boolean; centred?: boolean }) {
   return (
     <span className="inline-flex items-center gap-2">
-      <LogoMark className="h-8 w-8" />
+      <LogoMark className={centred ? "h-7 w-7 md:hidden" : "h-8 w-8"} />
       <span
-        className={`font-display text-[1.6rem] leading-none tracking-[-0.02em] text-brand-600 ${compactOnSmall ? "max-[430px]:hidden" : ""}`}
+        className={`font-display leading-none tracking-[-0.02em] text-brand-600 ${centred ? "text-[1.6rem] md:text-[2.1rem]" : "text-[1.6rem]"} ${compactOnSmall ? "max-[430px]:hidden" : ""}`}
         style={{ fontVariationSettings: '"opsz" 144, "SOFT" 50', fontWeight: 500 }}
       >
         Passalong

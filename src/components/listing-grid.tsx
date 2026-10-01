@@ -15,7 +15,7 @@ export async function ListingGrid({
   priorityCount?: number;
   gridClassName?: string;
 }) {
-  if (listings.length === 0) return <p className="rounded-xl bg-surface p-8 text-center text-muted">{empty}</p>;
+  if (listings.length === 0) return <p className="rounded-none bg-surface p-8 text-center text-muted">{empty}</p>;
   const [settings, user] = await Promise.all([getSettings(), getCurrentUser()]);
   const favs = user
     ? new Set(

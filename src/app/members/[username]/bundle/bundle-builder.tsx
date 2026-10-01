@@ -24,7 +24,7 @@ export function BundleBuilder({ items, tiers, isOwn, signedIn, fees }: { sellerI
             const on = picked.includes(i.id);
             return (
               <li key={i.id}>
-                <label className={`block cursor-pointer overflow-hidden rounded-xl border ${on ? "border-brand-600 shadow-[var(--shadow-tag)]" : "border-ink/30"}`}>
+                <label className={`block cursor-pointer overflow-hidden rounded-none border ${on ? "border-brand-600 shadow-[var(--shadow-tag)]" : "border-ink/30"}`}>
                   <input type="checkbox" className="peer sr-only" checked={on} onChange={() => setPicked(on ? picked.filter((x) => x !== i.id) : [...picked, i.id].slice(0, 20))} />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   {i.thumb ? <img src={i.thumb} alt="" className="aspect-[4/5] w-full object-cover" loading="lazy" /> : <span className="block aspect-[4/5] bg-brand-50" />}

@@ -28,7 +28,7 @@ export function AdminNav({ role }: { role: string }) {
           const active = href === "/admin" ? path === href : path.startsWith(href);
           return (
             <li key={href} className="shrink-0">
-              <Link href={href} aria-current={active ? "page" : undefined} className={`flex min-h-9 items-center rounded-xl border px-3 text-sm font-semibold whitespace-nowrap ${active ? "border-ink bg-accent-400" : "border-transparent hover:border-ink"}`}>
+              <Link href={href} aria-current={active ? "page" : undefined} className={`flex min-h-9 items-center rounded-none border px-3 text-sm font-semibold whitespace-nowrap ${active ? "border-ink bg-accent-400" : "border-transparent hover:border-ink"}`}>
                 {label}
               </Link>
             </li>

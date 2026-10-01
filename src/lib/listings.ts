@@ -1,7 +1,7 @@
 import "server-only";
 import { Prisma } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
-import { descendantIds, findCategoryByPath } from "@/lib/catalogue";
+import { descendantIds, findCategoryByPath, getCategoryTree as getCategoryTreeForCovers } from "@/lib/catalogue";
 
 /** Fields needed to render a listing card. */
 export const cardSelect = {
@@ -214,6 +214,23 @@ export async function similarListings(listing: { id: string; categoryId: string 
     .sort((a, b) => b.s - a.s)
     .slice(0, limit)
     .map((x) => x.c);
+}
+
+/** One cover photo per top-level category (newest live listing with a photo). */
+export async function categoryCovers(categoryIds: string[]) {
+  const tree = await getCategoryTreeForCovers();
+  const out = new Map<string, ListingCardData["photos"][number]>();
+  for (const id of categoryIds) {
+    const node = tree.find((n) => n.id === id);
+    if (!node) continue;
+    const l = await db.listing.findFirst({
+      where: { ...visibleWhere, status: "ACTIVE", categoryId: { in: descendantIds(node) }, photos: { some: {} } },
+      orderBy: { publishedAt: "desc" },
+      select: { photos: { orderBy: { position: "asc" }, take: 1, select: { storageKey: true, width: true, height: true, blurData: true } } },
+    });
+    if (l?.photos[0]) out.set(id, l.photos[0]);
+  }
+  return out;
 }
 
 /** Brands with the most live listings (real counts, no editorial boosting). */

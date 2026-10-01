@@ -53,7 +53,7 @@ const SHAPES: Record<Kind, string> = {
   box: `<path d="M270 360 L530 360 L530 640 L270 640 Z"/><path d="M270 360 L400 300 L530 360" fill="rgba(255,255,255,.25)"/>`,
 };
 
-const BACKDROPS = ["#efe9df", "#e9e6ef", "#ece5e1", "#e5eae4", "#f1ebe2", "#e7e4dd"];
+const BACKDROPS = ["#f2f1ee", "#f1efeb", "#f3f2ef", "#efeeeb"];
 
 /** Returns an SVG Buffer. `angle` varies the composition slightly between photos of the same item. */
 export function stillLifeSvg(opts: { kind: Kind; hex: string; seed: number; angle: number }) {
@@ -64,13 +64,13 @@ export function stillLifeSvg(opts: { kind: Kind; hex: string; seed: number; angl
   const outline = opts.hex.toLowerCase() === "#ffffff" ? `stroke="#d9d3c8" stroke-width="3"` : "";
   return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
   <defs>
-    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${bg}"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.6"/></linearGradient>
-    <radialGradient id="shadow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#000" stop-opacity="0.18"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
-    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <radialGradient id="wall" cx="0.5" cy="0.42" r="0.75"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="${bg}"/></radialGradient>
+    <radialGradient id="shadow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#000" stop-opacity="0.16"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0.6"><stop offset="0" stop-color="#fff" stop-opacity="0.28"/><stop offset="0.45" stop-color="#fff" stop-opacity="0.04"/><stop offset="1" stop-color="#000" stop-opacity="0.16"/></linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
   </defs>
   <rect width="800" height="1000" fill="url(#wall)"/>
-  <rect y="760" width="800" height="240" fill="${bg}" opacity="0.85"/>
-  <ellipse cx="400" cy="745" rx="270" ry="38" fill="url(#shadow)"/>
+  <ellipse cx="400" cy="735" rx="230" ry="26" fill="url(#shadow)" filter="url(#soft)"/>
   <g transform="translate(400 470) rotate(${rotate}) scale(${scale}) translate(-400 -470)" fill="${fill}" color="${fill}" ${outline}>
     ${SHAPES[opts.kind]}
   </g>

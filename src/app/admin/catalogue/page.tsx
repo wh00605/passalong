@@ -42,7 +42,7 @@ export default async function CataloguePage() {
         </ActionForm>
         <ul className="flex flex-wrap gap-2" role="list">
           {terms.map((t) => (
-            <li key={t.id} className={`inline-flex items-center gap-1 rounded-xl border px-2 py-1 text-sm ${t.severity === "BLOCK" ? "border-danger" : "border-ink/40"}`}>
+            <li key={t.id} className={`inline-flex items-center gap-1 rounded-none border px-2 py-1 text-sm ${t.severity === "BLOCK" ? "border-danger" : "border-ink/40"}`}>
               {t.term} <span className="font-mono text-[10px]">{t.severity}</span>
               <AdminAction action={deleteProhibitedTermAction.bind(null, t.id)} label="×" className="btn-ghost min-h-6 px-1 text-xs" confirmText={`Remove “${t.term}”?`} />
             </li>
@@ -57,7 +57,7 @@ export default async function CataloguePage() {
           <Field name="name" label="Name" required />
           <Field name="sizeGroupId" label="Size group" options={[{ value: "", label: "(inherit)" }, ...groups.map((g) => ({ value: g.id, label: g.name }))]} />
         </ActionForm>
-        <div className="max-h-96 overflow-y-auto rounded-xl border border-line">
+        <div className="max-h-96 overflow-y-auto rounded-none border border-line">
           <table className="w-full text-sm">
             <caption className="sr-only">Categories</caption>
             <thead className="sticky top-0 bg-brand-600 text-white"><tr className="text-left font-mono text-xs uppercase"><th scope="col" className="px-2 py-1">Path</th><th scope="col">Active</th><th scope="col">Prohibited</th></tr></thead>
