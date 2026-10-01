@@ -12,6 +12,7 @@ const ITEMS = [
   ["payments", "Payment methods"],
   ["payouts", "Payouts & bank"],
   ["bundles", "Bundle discounts"],
+  ["tax", "Tax details"],
   ["holiday", "Holiday mode"],
   ["data", "Your data"],
 ] as const;

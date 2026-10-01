@@ -92,7 +92,7 @@ type FieldProps = {
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "children">;
 
 /** Labelled input with hint and error text wired up via aria-describedby. */
-export function Field({ name, label, hint, state: stateProp, className, children, ...input }: FieldProps) {
+export function Field({ name, label, hint, state: stateProp, className, children, textarea, rows, options, ...input }: FieldProps & { textarea?: boolean; rows?: number; options?: { value: string; label: string }[] }) {
   const ctx = useContext(FormStateContext);
   const state = stateProp ?? ctx;
   const id = `f-${name}`;
@@ -105,7 +105,19 @@ export function Field({ name, label, hint, state: stateProp, className, children
         {label}
         {input.required && <span aria-hidden="true" className="text-danger"> *</span>}
       </label>
-      {children ? children(a11y) : <input name={name} className="input" {...a11y} {...input} defaultValue={state?.values?.[name] ?? input.defaultValue} />}
+      {children ? (
+        children(a11y)
+      ) : textarea ? (
+        <textarea name={name} className="input" rows={rows ?? 4} maxLength={input.maxLength} required={input.required} placeholder={input.placeholder} {...a11y} defaultValue={state?.values?.[name] ?? (input.defaultValue as string | undefined)} />
+      ) : options ? (
+        <select name={name} className="input" required={input.required} {...a11y} defaultValue={state?.values?.[name] ?? (input.defaultValue as string | undefined)}>
+          {options.map((o) => (
+            <option key={o.value} value={o.value}>{o.label}</option>
+          ))}
+        </select>
+      ) : (
+        <input name={name} className="input" {...a11y} {...input} defaultValue={state?.values?.[name] ?? input.defaultValue} />
+      )}
       {hint && (
         <p id={`${id}-hint`} className="hint">
           {hint}

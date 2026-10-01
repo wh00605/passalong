@@ -24,9 +24,7 @@ export default async function ProfileSettingsPage() {
         <Field name="name" label="Display name" defaultValue={user.name} required maxLength={60} autoComplete="name" />
         <Field name="username" label="Username" defaultValue={user.username} required maxLength={20} hint="Changing this changes your wardrobe link." autoCapitalize="none" spellCheck={false} />
         <Field name="location" label="Town or city" defaultValue={user.location ?? ""} maxLength={60} hint="Optional. Shown on your profile – don't add your full address." autoComplete="address-level2" />
-        <Field name="bio" label="About you" hint="Up to 500 characters." >
-          {(a11y) => <textarea name="bio" rows={4} maxLength={500} defaultValue={user.bio ?? ""} className="input" {...a11y} />}
-        </Field>
+        <Field name="bio" label="About you" hint="Up to 500 characters." textarea rows={4} maxLength={500} defaultValue={user.bio ?? ""} />
       </ActionForm>
     </section>
   );

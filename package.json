@@ -24,6 +24,8 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",
+    "@stripe/react-stripe-js": "^7.0.0",
+    "@stripe/stripe-js": "^10.0.0",
     "@supabase/supabase-js": "^2.117.2",
     "@upstash/ratelimit": "^2.2.0",
     "@upstash/redis": "^1.39.0",

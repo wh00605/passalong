@@ -115,6 +115,7 @@ export default async function MemberPage({ params, searchParams }: PageProps<"/m
               {member.bundleTiers.map((t) => (
                 <span key={t.id} className="tag text-xs">{t.minItems}+ items −{t.percentOff}%</span>
               ))}
+              {!isMe && <Link href={`/members/${member.username}/bundle`} className="link">Build a bundle</Link>}
             </p>
           )}
         </div>
