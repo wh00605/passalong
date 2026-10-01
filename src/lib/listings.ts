@@ -50,6 +50,9 @@ export type SearchParams = {
   sort?: SortKey;
   page?: number;
   sellerId?: string;
+  /** Only listings first published after this time (saved-search alerts). */
+  publishedAfter?: Date;
+  excludeSellerId?: string;
 };
 
 export const PAGE_SIZE = 24;
@@ -95,6 +98,8 @@ export async function searchListings(p: SearchParams) {
   if (p.priceMin != null) where.push(Prisma.sql`l."pricePence" >= ${p.priceMin}`);
   if (p.priceMax != null) where.push(Prisma.sql`l."pricePence" <= ${p.priceMax}`);
   if (p.sellerId) where.push(Prisma.sql`l."sellerId" = ${p.sellerId}`);
+  if (p.excludeSellerId) where.push(Prisma.sql`l."sellerId" <> ${p.excludeSellerId}`);
+  if (p.publishedAfter) where.push(Prisma.sql`l."publishedAt" > ${p.publishedAfter}`);
 
   const sort: SortKey = p.sort && p.sort in SORTS ? p.sort : q ? "relevance" : "newest";
   const bumped = Prisma.sql`(CASE WHEN l."bumpedUntil" > now() THEN 1 ELSE 0 END)`;
