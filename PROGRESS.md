@@ -15,7 +15,7 @@ All ten phases are built and tested locally. See README.md for setup, testing an
 | 9. Legal & help | ✅ Done – legal pages are DRAFTS for a solicitor |
 | 10. Deployment | ⏳ CI, README and deploy guide done; actual deployment waits for your accounts |
 
-Tests: 101 unit/integration, 25 e2e + accessibility (desktop and mobile), lint and type check clean, production build passes.
+Tests: 101 unit/integration, 29 e2e + accessibility (desktop and mobile), lint and type check clean, production build passes.
 
 ## Waiting on you
 1. GitHub repo, Vercel, Supabase (London), Stripe (test mode + Connect) – then follow README → Deploying.

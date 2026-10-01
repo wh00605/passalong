@@ -38,7 +38,7 @@ export async function SiteHeader() {
       </a>
       <div className="container-page flex items-center gap-3 py-3">
         <Link href="/" aria-label="Passalong home" className="shrink-0">
-          <Logo />
+          <Logo compactOnSmall={!!user} />
         </Link>
         <Suspense fallback={<div className="hidden flex-1 md:block" />}>
           <SearchBox className="mx-2 hidden max-w-2xl flex-1 md:block" />

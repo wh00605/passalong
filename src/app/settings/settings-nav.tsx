@@ -20,7 +20,7 @@ const ITEMS = [
 export function SettingsNav() {
   const path = usePathname();
   return (
-    <nav aria-label="Settings sections">
+    <nav aria-label="Settings sections" className="min-w-0">
       <ul className="flex gap-1 overflow-x-auto pb-2 md:flex-col md:overflow-visible md:pb-0" role="list">
         {ITEMS.map(([slug, label]) => {
           const href = `/settings/${slug}`;

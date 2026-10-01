@@ -11,11 +11,11 @@ export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   );
 }
 
-export function Logo() {
+export function Logo({ compactOnSmall = false }: { compactOnSmall?: boolean }) {
   return (
     <span className="inline-flex items-center gap-1.5">
       <LogoMark />
-      <span className="font-display text-[1.45rem] leading-none font-extrabold tracking-[-0.04em] text-ink">
+      <span className={`font-display text-[1.45rem] leading-none font-extrabold tracking-[-0.04em] text-ink ${compactOnSmall ? "max-[430px]:hidden" : ""}`}>
         passalong
       </span>
     </span>

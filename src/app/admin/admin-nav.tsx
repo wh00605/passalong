@@ -22,7 +22,7 @@ const ITEMS: [string, string, "staff" | "admin"][] = [
 export function AdminNav({ role }: { role: string }) {
   const path = usePathname();
   return (
-    <nav aria-label="Admin">
+    <nav aria-label="Admin" className="min-w-0">
       <ul className="flex gap-1 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible" role="list">
         {ITEMS.filter(([, , need]) => need === "staff" || role === "admin").map(([href, label]) => {
           const active = href === "/admin" ? path === href : path.startsWith(href);

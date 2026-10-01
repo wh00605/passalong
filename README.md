@@ -4,7 +4,7 @@ A UK marketplace for pre-loved fashion and more – buy, sell, chat, make offers
 
 Built with Next.js 16 (App Router), TypeScript, Tailwind CSS 4, PostgreSQL + Prisma 7, Better Auth, Stripe Connect, Supabase (storage + realtime), Shippo, Resend and Upstash.
 
-> **Status:** feature-complete for a test launch, running locally with 101 unit/integration tests and 25 end-to-end/accessibility tests passing.
+> **Status:** feature-complete for a test launch, running locally with 101 unit/integration tests and 29 end-to-end/accessibility tests passing.
 > **Not yet live:** it needs your accounts and keys (see [Deploying](#deploying)). Stripe stays in **test mode** until you explicitly approve going live. All legal pages are **drafts for a solicitor to review**.
 
 ---
