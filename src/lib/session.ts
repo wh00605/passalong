@@ -38,7 +38,9 @@ export async function requireUserForAction(): Promise<CurrentUser> {
   const user = await getCurrentUser();
   if (!user) throw new ActionError("Please log in to continue.");
   if (!user.emailVerified) throw new ActionError("Please confirm your email address first.");
-  if (user.banned) throw new ActionError("Your account is restricted. Contact support for help.");
+  if (user.banned && (!user.banExpires || user.banExpires > new Date())) {
+    throw new ActionError("Your account is restricted. Contact support for help.");
+  }
   return user;
 }
 
