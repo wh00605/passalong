@@ -28,6 +28,8 @@ export type NotifyInput = {
   emailParagraphs?: string[];
   /** Force email regardless of preference (security/legal notices). */
   forceEmail?: boolean;
+  /** Skip email this time (e.g. throttling chat emails). */
+  skipEmail?: boolean;
 };
 
 /**
@@ -51,7 +53,7 @@ export async function notify(input: NotifyInput): Promise<void> {
     tasks.push(db.notification.create({ data: { userId: input.userId, type: input.type, title: input.title, body: input.body, url: input.url } }));
   }
 
-  if (pref.email || input.forceEmail || input.type === "ACCOUNT") {
+  if (!input.skipEmail && (pref.email || input.forceEmail || input.type === "ACCOUNT")) {
     tasks.push(
       sendEmail({
         to: user.email,
