@@ -61,7 +61,12 @@ export function SiteFooter() {
           </nav>
         ))}
       </div>
-      <p aria-hidden="true" className="container-page overflow-hidden font-display text-[clamp(4rem,17vw,15rem)] leading-[0.8] font-extrabold tracking-[-0.06em] text-surface/10 select-none">passalong</p>
+      {/* Decorative wordmark drawn as a graphic (not text) so it's ignored by assistive tech. */}
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 1000 170" className="container-page block h-auto w-full select-none">
+        <text x="0" y="150" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="#fbfaf6" fillOpacity="0.1" style={{ font: "800 190px var(--font-bricolage), sans-serif", letterSpacing: "-0.06em" }}>
+          passalong
+        </text>
+      </svg>
       <div className="border-t border-surface/20">
         <p className="container-page py-4 font-mono text-xs text-brand-200">
           © {new Date().getFullYear()} Passalong. All prices in GBP.

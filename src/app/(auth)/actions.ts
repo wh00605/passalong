@@ -70,7 +70,8 @@ export const logInAction = validatedAction(
     await enforceRateLimit("login", `${await clientIp()}:${data.email}`, 10, 600);
     try {
       await auth.api.signInEmail({
-        body: { email: data.email, password: data.password },
+        // callbackURL is used by the verification email re-sent to unconfirmed accounts.
+        body: { email: data.email, password: data.password, callbackURL: "/welcome" },
         headers: await headers(),
       });
     } catch (err) {
