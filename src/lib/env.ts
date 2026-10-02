@@ -1,7 +1,14 @@
 // Central place to read configuration. Integrations report whether they are configured
 // so the UI can show an honest "not set up yet" state instead of pretending to work.
 
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+// On Vercel, fall back to the project's production domain so a first deploy works before
+// NEXT_PUBLIC_SITE_URL is set.
+const vercelHost =
+  process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL || (vercelHost ? `https://${vercelHost}` : "http://localhost:3000")
+).replace(/\/$/, "");
 
 export const isProduction = process.env.NODE_ENV === "production";
 
