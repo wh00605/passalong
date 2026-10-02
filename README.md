@@ -62,8 +62,7 @@ Built with Next.js 16 (App Router), TypeScript, Tailwind CSS 4, PostgreSQL + Pri
 
 ### Prerequisites
 
-- **Node.js 22 LTS** and **Git**. (On this PC they were installed as portable copies in `%USERPROFILE%\tools` because the Windows installer needed an admin prompt. Either install them normally, or add them to `PATH` in each terminal:
-  `$env:PATH="$env:USERPROFILE\tools\node-v22.23.3-win-x64;$env:USERPROFILE\tools\mingit\cmd;$env:PATH"`)
+- **Node.js 22 or 24 LTS** and **Git** (both installed on this PC via winget).
 - No Docker needed – a real Postgres server runs from `node_modules` via `embedded-postgres`.
 
 ### First run
