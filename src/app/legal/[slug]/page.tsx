@@ -23,11 +23,11 @@ export default async function LegalPage({ params }: PageProps<"/legal/[slug]">) 
     <div className="container-page max-w-3xl py-10">
       <DraftBanner />
       <p className="eyebrow mt-6">Legal</p>
-      <h1 className="mt-2 text-4xl font-medium sm:text-5xl">{doc.title}</h1>
+      <h1 className="mt-2 text-4xl font-semibold sm:text-5xl">{doc.title}</h1>
       <p className="mt-1 font-mono text-xs text-muted">Last updated {doc.updated}</p>
       <article className="mt-8"><Markdown source={doc.body} /></article>
       {slug === "cookies" && (
-        <section id="manage" className="mt-8 rounded-none border border-line p-5">
+        <section id="manage" className="mt-8 rounded-lg border border-line p-5">
           <h2 className="text-xl font-medium">Your cookie choices</h2>
           <CookieSettingsButton />
         </section>

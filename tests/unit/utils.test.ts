@@ -63,6 +63,15 @@ describe("addWorkingDays", () => {
   });
 });
 
+describe("diversifyBySeller", () => {
+  it("avoids the same seller twice in a row while keeping order", async () => {
+    const { diversifyBySeller } = await import("@/lib/listings");
+    const s = (u: string, id: number) => ({ id, seller: { username: u } });
+    const out = diversifyBySeller([s("a", 1), s("a", 2), s("a", 3), s("b", 4), s("c", 5)]);
+    expect(out.map((o) => o.id)).toEqual([1, 4, 2, 5, 3]);
+  });
+});
+
 describe("buildSearchText", () => {
   it("lower-cases and strips accents", () => {
     expect(buildSearchText({ title: "Sézane Blouse", description: "Lovely", brand: "Sézane" })).toBe("sezane blouse sezane lovely");

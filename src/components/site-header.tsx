@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { Bell, Heart, MessageCircle } from "lucide-react";
+import { Bell, Heart, MessageCircle, Plus } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { SearchBox } from "@/components/search-box";
 import { UserMenu } from "@/components/user-menu";
@@ -12,7 +12,9 @@ function Badge({ count, label }: { count: number; label: string }) {
   if (!count) return <span className="sr-only">{label}</span>;
   return (
     <>
-      <span aria-hidden="true" className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-brand-600 ring-2 ring-surface" />
+      <span aria-hidden="true" className="absolute top-0.5 right-0.5 min-w-[1.15rem] rounded-full bg-hot px-1 text-center text-[10px] leading-[1.15rem] font-bold text-white ring-2 ring-surface">
+        {count > 99 ? "99+" : count}
+      </span>
       <span className="sr-only">
         {label}, {count} unread
       </span>
@@ -20,71 +22,69 @@ function Badge({ count, label }: { count: number; label: string }) {
   );
 }
 
-const iconLink = "relative inline-flex h-11 w-11 items-center justify-center text-ink/80 transition-colors hover:text-ink";
+const iconLink = "relative inline-flex h-10 w-10 items-center justify-center rounded-full text-ink/75 transition-colors hover:bg-shade hover:text-ink";
 
 export async function SiteHeader() {
   const [user, categories] = await Promise.all([getCurrentUser(), getTopCategories()]);
   const counts = user ? await getUnreadCounts(user.id) : { messages: 0, notifications: 0 };
 
   return (
-    <header className="relative z-40 bg-surface/95 backdrop-blur-md md:sticky md:-top-8">
-      <a href="#main" className="sr-only-focusable absolute top-2 left-2 z-50 bg-brand-600 px-4 py-2 text-sm font-medium text-white">
+    <header className="sticky top-0 z-40 border-b border-line bg-surface">
+      <a href="#main" className="sr-only-focusable absolute top-2 left-2 z-50 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white">
         Skip to main content
       </a>
-      <p className="bg-brand-600 py-2 text-center text-[0.7rem] font-medium tracking-[0.16em] text-white uppercase">
-        No selling fees <span aria-hidden="true" className="mx-2 text-[#e2c9a0]">·</span> Buyer Protection on every order
-      </p>
-      <div className="container-page grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-4">
-        <Suspense fallback={<div />}>
-          <SearchBox className="hidden max-w-xs md:block" />
-        </Suspense>
-        <Link href="/" aria-label="Passalong home" className="col-start-1 justify-self-start md:col-start-2 md:justify-self-center">
-          <Logo compactOnSmall={!!user} centred />
+      <div className="container-page flex items-center gap-4 py-2.5">
+        <Link href="/" aria-label="Passalong home" className="shrink-0">
+          <Logo compactOnSmall={!!user} />
         </Link>
-        <nav aria-label="Account" className="col-start-3 flex items-center justify-self-end gap-0.5">
+        <Suspense fallback={<div className="hidden flex-1 md:block" />}>
+          <SearchBox className="hidden flex-1 md:block" />
+        </Suspense>
+        <nav aria-label="Account" className="ml-auto flex items-center gap-1">
           {user ? (
             <>
               <Link href="/inbox" className={iconLink}>
-                <MessageCircle className="h-[1.25rem] w-[1.25rem]" strokeWidth={1.5} aria-hidden="true" />
+                <MessageCircle className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 <Badge count={counts.messages} label="Inbox" />
               </Link>
               <Link href="/notifications" className={iconLink}>
-                <Bell className="h-[1.25rem] w-[1.25rem]" strokeWidth={1.5} aria-hidden="true" />
+                <Bell className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 <Badge count={counts.notifications} label="Notifications" />
               </Link>
               <Link href="/favourites" className={`${iconLink} max-sm:hidden`}>
-                <Heart className="h-[1.25rem] w-[1.25rem]" strokeWidth={1.5} aria-hidden="true" />
+                <Heart className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 <span className="sr-only">Favourites</span>
               </Link>
               <UserMenu user={{ name: user.name, username: user.username, image: user.image, isStaff: isStaff(user) }} />
             </>
           ) : (
-            <Link href="/login" className="inline-flex min-h-11 items-center px-3 text-[0.72rem] font-medium tracking-[0.14em] uppercase hover:underline hover:underline-offset-4">
-              Log in
-            </Link>
+            <>
+              <Link href="/login" className="inline-flex min-h-10 items-center rounded-full px-3 text-sm font-semibold hover:bg-shade">Log in</Link>
+              <Link href="/signup" className="btn-secondary btn-sm max-sm:hidden">Join</Link>
+            </>
           )}
-          <Link href="/sell" className="btn-primary btn-sm ml-2">Sell</Link>
+          <Link href="/sell" className="btn-primary btn-sm ml-1.5 gap-1 pl-3">
+            <Plus className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />
+            <span className="max-[380px]:sr-only">List an item</span>
+          </Link>
         </nav>
       </div>
-      <div className="container-page pb-3 md:hidden">
-        <Suspense fallback={<div className="h-12" />}>
+      <div className="container-page pb-2.5 md:hidden">
+        <Suspense fallback={<div className="h-11" />}>
           <SearchBox />
         </Suspense>
       </div>
-      <nav aria-label="Categories" className="border-y border-line">
-        <ul className="container-page flex gap-8 overflow-x-auto text-[0.72rem] font-medium tracking-[0.14em] whitespace-nowrap uppercase [scrollbar-width:none] md:justify-center">
-          <li>
-            <Link href="/search?sort=newest" className="inline-flex min-h-11 items-center border-b border-transparent text-ink/80 transition-colors hover:border-ink hover:text-ink">New in</Link>
-          </li>
+      <nav aria-label="Categories" className="max-md:border-t max-md:border-line">
+        <ul className="container-page flex gap-5 overflow-x-auto text-sm whitespace-nowrap [scrollbar-width:none]">
           {categories.map((c) => (
             <li key={c.id}>
-              <Link href={`/c/${c.path}`} className="inline-flex min-h-11 items-center border-b border-transparent text-ink/80 transition-colors hover:border-ink hover:text-ink">
+              <Link href={`/c/${c.path}`} className="inline-flex min-h-10 items-center border-b-2 border-transparent px-1 text-ink/80 transition-colors hover:border-coral hover:text-ink">
                 {c.name}
               </Link>
             </li>
           ))}
           <li>
-            <Link href="/help" className="inline-flex min-h-11 items-center text-muted hover:text-ink">Help</Link>
+            <Link href="/search?sort=newest" className="inline-flex min-h-10 items-center border-b-2 border-transparent px-1 font-semibold text-coral-700 hover:border-coral">Just listed</Link>
           </li>
         </ul>
       </nav>

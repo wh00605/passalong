@@ -17,7 +17,7 @@ export const cardSelect = {
   customBrand: true,
   size: { select: { label: true } },
   photos: { orderBy: { position: "asc" }, take: 1, select: { storageKey: true, width: true, height: true, blurData: true } },
-  seller: { select: { username: true } },
+  seller: { select: { username: true, name: true, image: true } },
 } satisfies Prisma.ListingSelect;
 
 export type ListingCardData = Prisma.ListingGetPayload<{ select: typeof cardSelect }>;
@@ -137,8 +137,27 @@ export async function searchListings(p: SearchParams) {
   };
 }
 
+/**
+ * Re-orders a ranked list so the same seller doesn't appear twice in a row where avoidable,
+ * keeping the original ranking as much as possible.
+ */
+export function diversifyBySeller<T extends { seller: { username: string } }>(items: T[]): T[] {
+  const queue = [...items];
+  const out: T[] = [];
+  while (queue.length) {
+    const last = out.at(-1)?.seller.username;
+    const idx = queue.findIndex((i) => i.seller.username !== last);
+    out.push(...queue.splice(idx === -1 ? 0 : idx, 1));
+  }
+  return out;
+}
+
 /** Home feed. Signed-in members with personalisation on get items ranked by their sizes, brands and recent views. */
 export async function personalisedFeed(userId: string | null, limit = 36): Promise<ListingCardData[]> {
+  return diversifyBySeller(await rankedFeed(userId, limit));
+}
+
+async function rankedFeed(userId: string | null, limit: number): Promise<ListingCardData[]> {
   const candidates = await db.listing.findMany({
     where: { ...visibleWhere, status: "ACTIVE", ...(userId ? { sellerId: { not: userId } } : {}) },
     orderBy: { publishedAt: "desc" },
@@ -231,6 +250,26 @@ export async function categoryCovers(categoryIds: string[]) {
     if (l?.photos[0]) out.set(id, l.photos[0]);
   }
   return out;
+}
+
+/** Members with the most live items – shown as "wardrobes to follow". */
+export async function topWardrobes(limit = 6, excludeUserId?: string) {
+  const rows = await db.listing.groupBy({
+    by: ["sellerId"],
+    where: { ...visibleWhere, status: "ACTIVE", ...(excludeUserId ? { sellerId: { not: excludeUserId } } : {}) },
+    _count: { _all: true },
+    orderBy: { _count: { sellerId: "desc" } },
+    take: limit,
+  });
+  const users = await db.user.findMany({
+    where: { id: { in: rows.map((r) => r.sellerId) } },
+    select: {
+      id: true, name: true, username: true, image: true, ratingAvg: true, ratingCount: true, location: true, followerCount: true,
+      listings: { where: { ...visibleWhere, status: "ACTIVE" }, orderBy: { publishedAt: "desc" }, take: 3, select: { id: true, title: true, photos: { orderBy: { position: "asc" }, take: 1, select: { storageKey: true, width: true, height: true, blurData: true } } } },
+    },
+  });
+  const byId = new Map(users.map((u) => [u.id, u]));
+  return rows.map((r) => ({ ...byId.get(r.sellerId)!, activeCount: r._count._all })).filter((u) => u.username);
 }
 
 /** Brands with the most live listings (real counts, no editorial boosting). */

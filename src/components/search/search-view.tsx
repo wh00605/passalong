@@ -140,7 +140,7 @@ export async function SearchView({
     <div className="container-page py-6">
       <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line pb-3">
         <div>
-          <h1 className="text-3xl font-medium sm:text-4xl">{heading}</h1>
+          <h1 className="text-3xl font-semibold sm:text-4xl">{heading}</h1>
           <p className="mt-1 font-mono text-sm text-muted" aria-live="polite">{results.total.toLocaleString("en-GB")} item{results.total === 1 ? "" : "s"}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">

@@ -55,7 +55,7 @@ async function Reports() {
           </p>
           {r.details && <p className="text-sm italic">“{r.details}”</p>}
           {r.listing && <p className="text-sm">Item: <Link href={listingPath(r.listing)} className="link" target="_blank">{r.listing.title}</Link> by <Link href={`/admin/users?q=${r.listing.seller.username}`} className="link">@{r.listing.seller.username}</Link></p>}
-          {r.message && <p className="rounded-none bg-brand-50 p-2 text-sm">Message: “{r.message.body.slice(0, 400)}”</p>}
+          {r.message && <p className="rounded-lg bg-brand-50 p-2 text-sm">Message: “{r.message.body.slice(0, 400)}”</p>}
           {r.user && <p className="text-sm">Member: <Link href={`/admin/users/${r.user.id}`} className="link">@{r.user.username}</Link> · {r.user.warningCount} warning(s){r.user.banned ? " · restricted" : ""}</p>}
           <div className="flex flex-wrap gap-2">
             {r.listing && <AdminAction action={moderateListingAction.bind(null, r.listing.id, "remove", r.id)} label="Remove item" fields={["reason"]} danger />}

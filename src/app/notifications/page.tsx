@@ -14,7 +14,7 @@ export default async function NotificationsPage() {
   return (
     <div className="container-page max-w-3xl py-8">
       <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line pb-3">
-        <h1 className="text-3xl font-medium sm:text-4xl">Notifications</h1>
+        <h1 className="text-3xl font-semibold sm:text-4xl">Notifications</h1>
         <div className="flex gap-2">
           {unread > 0 && <MarkAllRead />}
           <Link href="/settings/notifications" className="btn-ghost btn-sm">Settings</Link>

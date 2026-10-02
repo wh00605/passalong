@@ -22,14 +22,14 @@ export default async function NotificationSettingsPage() {
         {integrations.webPush() ? (
           <EnablePush vapidKey={process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!} />
         ) : (
-          <p className="rounded-none border border-dashed border-line-strong/60 p-3 text-sm text-muted">
+          <p className="rounded-lg border border-dashed border-line-strong/60 p-3 text-sm text-muted">
             Browser push notifications aren&apos;t set up on this site yet.
           </p>
         )}
       </div>
 
       <ActionForm action={saveNotificationPrefsAction} className="mt-6 space-y-4" submitLabel="Save notification settings">
-        <div className="overflow-x-auto rounded-none border border-line">
+        <div className="overflow-x-auto rounded-lg border border-line">
           <table className="w-full min-w-[520px] text-sm">
             <caption className="sr-only">Notification channels for each type of update</caption>
             <thead className="bg-brand-600 text-white">

@@ -151,7 +151,7 @@ export function ChatThread(props: {
         </div>
         <details className="relative">
           <summary className="btn-ghost btn-sm list-none" aria-label="More options">•••</summary>
-          <div className="absolute right-0 z-20 mt-1 w-48 space-y-1 rounded-none border border-line bg-surface p-2 shadow-[var(--shadow-tag)]">
+          <div className="absolute right-0 z-20 mt-1 w-48 space-y-1 rounded-lg border border-line bg-surface p-2 shadow-[var(--shadow-tag)]">
             <ReportButton targetType="USER" targetId={other.id} label="Report member" className="btn-ghost btn-sm w-full justify-start" />
             <BlockButton targetId={other.id} initial={props.blocked} name={other.name} />
           </div>
@@ -182,7 +182,7 @@ export function ChatThread(props: {
 
       {/* Messages */}
       <ol className="min-h-0 flex-1 space-y-2 overflow-y-auto p-3" aria-label="Messages">
-        <li className="mx-auto max-w-md rounded-none border border-dashed border-line-strong/60 p-3 text-center text-xs text-muted">
+        <li className="mx-auto max-w-md rounded-lg border border-dashed border-line-strong/60 p-3 text-center text-xs text-muted">
           <ShieldAlert className="mx-auto mb-1 h-4 w-4" aria-hidden="true" />
           {SAFETY_TEXT}
         </li>
@@ -194,13 +194,13 @@ export function ChatThread(props: {
             <li key={m.id}>
               {showDay && <p className="my-3 text-center font-mono text-[11px] tracking-wider text-muted uppercase">{d}</p>}
               {m.type === "SYSTEM" || m.type === "ORDER_EVENT" ? (
-                <p className="mx-auto max-w-md rounded-none bg-brand-50 px-3 py-1.5 text-center text-xs">
+                <p className="mx-auto max-w-md rounded-lg bg-brand-50 px-3 py-1.5 text-center text-xs">
                   {m.order ? <Link href={`/orders/${m.order.id}`} className="font-semibold underline">{m.body}</Link> : m.body}
                   <span className="ml-2 font-mono text-muted">{time(m.createdAt)}</span>
                 </p>
               ) : m.type === "OFFER" && m.offer ? (
                 <div className={`flex ${mine ? "justify-end" : "justify-start"}`}>
-                  <div className="w-full max-w-xs rounded-none border border-line bg-surface p-3">
+                  <div className="w-full max-w-xs rounded-lg border border-line bg-surface p-3">
                     <p className="flex items-center gap-2 font-mono text-xs tracking-wider uppercase">
                       <Tag className="h-3.5 w-3.5" aria-hidden="true" /> {mine ? "Your offer" : "Offer"}
                     </p>
@@ -230,17 +230,17 @@ export function ChatThread(props: {
                 </div>
               ) : (
                 <div className={`group flex flex-col ${mine ? "items-end" : "items-start"}`}>
-                  <div className={`max-w-[80%] rounded-none border border-line px-3 py-2 ${mine ? "bg-brand-600 text-white" : "bg-surface"}`}>
+                  <div className={`max-w-[80%] rounded-lg border border-line px-3 py-2 ${mine ? "bg-brand-600 text-white" : "bg-surface"}`}>
                     {m.attachments.map((a) => (
                       <a key={a.id} href={`/api/files/private/${a.storageKey}-1280.webp`} target="_blank" rel="noreferrer" className="mb-1 block">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`/api/files/private/${a.storageKey}-640.webp`} alt={`Photo from ${mine ? "you" : other.name}`} width={a.width} height={a.height} className="max-h-72 w-auto rounded-none" loading="lazy" />
+                        <img src={`/api/files/private/${a.storageKey}-640.webp`} alt={`Photo from ${mine ? "you" : other.name}`} width={a.width} height={a.height} className="max-h-72 w-auto rounded-lg" loading="lazy" />
                       </a>
                     ))}
                     {m.body && <p className="text-sm break-words whitespace-pre-wrap">{m.body}</p>}
                   </div>
                   {m.safetyWarning && (
-                    <p className="mt-1 flex max-w-[80%] items-start gap-1.5 rounded-none border border-hot bg-surface px-2 py-1 text-xs" role="note">
+                    <p className="mt-1 flex max-w-[80%] items-start gap-1.5 rounded-lg border border-hot bg-surface px-2 py-1 text-xs" role="note">
                       <ShieldAlert className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                       {mine ? "This message mentions paying or talking off Passalong. " : ""}
                       {SAFETY_TEXT}

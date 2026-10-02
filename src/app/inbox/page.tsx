@@ -5,7 +5,7 @@ export default async function InboxIndex({ searchParams }: PageProps<"/inbox">) 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-3 p-8 text-center">
       {typeof sp.error === "string" && (
-        <p role="alert" className="rounded-none border border-danger bg-danger-bg px-4 py-2 text-sm text-danger">{sp.error.slice(0, 200)}</p>
+        <p role="alert" className="rounded-lg border border-danger bg-danger-bg px-4 py-2 text-sm text-danger">{sp.error.slice(0, 200)}</p>
       )}
       <MessageCircle className="h-10 w-10" aria-hidden="true" />
       <p className="font-display text-2xl font-medium">Pick a conversation</p>

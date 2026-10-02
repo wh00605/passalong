@@ -80,10 +80,10 @@ export default async function MemberPage({ params, searchParams }: PageProps<"/m
       <section className="grid gap-6 border-b border-line pb-8 md:grid-cols-[auto_1fr_auto] md:items-start" aria-labelledby="member-name">
         <Avatar name={member.name} image={member.image} size={112} />
         <div>
-          <h1 id="member-name" className="flex flex-wrap items-center gap-2 text-3xl font-medium sm:text-4xl">
+          <h1 id="member-name" className="flex flex-wrap items-center gap-2 text-3xl font-semibold sm:text-4xl">
             {member.name}
             {member.identityVerifiedAt && (
-              <span className="inline-flex items-center gap-1 rounded-none border border-line bg-accent-400 px-1.5 py-0.5 font-mono text-xs font-semibold">
+              <span className="inline-flex items-center gap-1 rounded-lg border border-line bg-accent-400 px-1.5 py-0.5 font-mono text-xs font-semibold">
                 <BadgeCheck className="h-3.5 w-3.5" aria-hidden="true" /> Verified seller
               </span>
             )}
@@ -110,7 +110,7 @@ export default async function MemberPage({ params, searchParams }: PageProps<"/m
           </dl>
           {member.bio && <p className="mt-4 max-w-2xl whitespace-pre-line">{member.bio}</p>}
           {member.bundleDiscountsEnabled && member.bundleTiers.length > 0 && (
-            <p className="mt-4 inline-flex flex-wrap items-center gap-2 rounded-none border border-line bg-surface px-3 py-2 text-sm">
+            <p className="mt-4 inline-flex flex-wrap items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-sm">
               <span className="font-semibold">Bundle & save:</span>
               {member.bundleTiers.map((t) => (
                 <span key={t.id} className="tag text-xs">{t.minItems}+ items −{t.percentOff}%</span>
@@ -135,7 +135,7 @@ export default async function MemberPage({ params, searchParams }: PageProps<"/m
       </section>
 
       {member.holidayMode && (
-        <p className="mt-6 flex items-center gap-2 rounded-none border border-line bg-accent-300 px-4 py-3 font-semibold">
+        <p className="mt-6 flex items-center gap-2 rounded-lg border border-line bg-accent-300 px-4 py-3 font-semibold">
           <Plane className="h-5 w-5" aria-hidden="true" /> {member.name} is on holiday – their items are hidden for now.
         </p>
       )}
@@ -164,7 +164,7 @@ export default async function MemberPage({ params, searchParams }: PageProps<"/m
         )}
         {tab === "reviews" && reviews && (
           reviews.length === 0 ? (
-            <p className="rounded-none border border-dashed border-line-strong/60 p-8 text-center text-muted">No reviews yet.</p>
+            <p className="rounded-lg border border-dashed border-line-strong/60 p-8 text-center text-muted">No reviews yet.</p>
           ) : (
             <ul className="max-w-3xl divide-y divide-line" role="list">
               {reviews.map((r) => (

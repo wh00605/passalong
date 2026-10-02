@@ -48,7 +48,7 @@ export default async function DisputePage({ params }: PageProps<"/orders/[id]/di
               {Object.entries(REASON_LABELS).map(([value, label]) => (
                 <label key={value} className="relative cursor-pointer">
                   <input type="radio" name="reason" value={value} className="peer sr-only" required />
-                  <span className="block rounded-none border border-line bg-surface p-3 font-semibold peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-focus-visible:outline-3 peer-focus-visible:outline-ink">{label}</span>
+                  <span className="block rounded-lg border border-line bg-surface p-3 font-semibold peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-focus-visible:outline-3 peer-focus-visible:outline-ink">{label}</span>
                 </label>
               ))}
             </div>

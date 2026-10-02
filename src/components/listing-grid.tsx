@@ -15,7 +15,7 @@ export async function ListingGrid({
   priorityCount?: number;
   gridClassName?: string;
 }) {
-  if (listings.length === 0) return <p className="rounded-none bg-surface p-8 text-center text-muted">{empty}</p>;
+  if (listings.length === 0) return <p className="rounded-lg bg-surface p-8 text-center text-muted">{empty}</p>;
   const [settings, user] = await Promise.all([getSettings(), getCurrentUser()]);
   const favs = user
     ? new Set(
@@ -28,7 +28,7 @@ export async function ListingGrid({
       )
     : new Set<string>();
   return (
-    <ul className={`grid gap-x-4 gap-y-9 sm:gap-x-6 ${gridClassName}`} role="list">
+    <ul className={`grid gap-x-3 gap-y-7 sm:gap-x-4 ${gridClassName}`} role="list">
       {listings.map((l, i) => (
         <li key={l.id}>
           <ListingCard listing={l} fees={settings} favourited={favs.has(l.id)} signedIn={!!user} priority={i < priorityCount} />

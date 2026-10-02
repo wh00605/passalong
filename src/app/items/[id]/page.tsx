@@ -160,7 +160,7 @@ export default async function ItemPage({ params }: PageProps<"/items/[id]">) {
       </nav>
 
       {l.moderationStatus !== "OK" && (isOwner || isStaff(viewer)) && (
-        <p className="mb-4 rounded-none border border-line bg-accent-300 p-3 text-sm font-semibold">
+        <p className="mb-4 rounded-lg border border-line bg-accent-300 p-3 text-sm font-semibold">
           {l.moderationStatus === "PENDING_REVIEW" ? "This item is being reviewed by our team and isn't visible to buyers yet." : "This item was removed by our team."}
         </p>
       )}
@@ -181,7 +181,7 @@ export default async function ItemPage({ params }: PageProps<"/items/[id]">) {
           <div>
             {l.status === "SOLD" && <span className="tag mb-3 bg-brand-600 text-white">Sold</span>}
             {l.status === "RESERVED" && <span className="tag mb-3 bg-surface">Reserved</span>}
-            <h1 className="text-3xl leading-tight font-medium sm:text-4xl">{l.title}</h1>
+            <h1 className="text-3xl leading-tight font-semibold sm:text-4xl">{l.title}</h1>
             <p className="mt-1 font-mono text-sm text-muted">{[brand, l.size?.label, conditionLabel(l.condition)].filter(Boolean).join(" / ")}</p>
             <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
               {/* Headline price includes the mandatory Buyer Protection fee (DMCC Act 2024). */}
@@ -210,7 +210,7 @@ export default async function ItemPage({ params }: PageProps<"/items/[id]">) {
                   </div>
                 </>
               ) : (
-                <p className="rounded-none border border-line p-3 text-sm text-muted">
+                <p className="rounded-lg border border-line p-3 text-sm text-muted">
                   {blocked ? "You can't buy from this member." : l.status === "SOLD" ? "This item has sold." : reservedForOther ? "This item is reserved for another buyer." : "This item isn't available right now."}
                 </p>
               )}
@@ -218,7 +218,7 @@ export default async function ItemPage({ params }: PageProps<"/items/[id]">) {
             </div>
           )}
 
-          <p className="flex items-start gap-3 rounded-none border border-line bg-surface p-3 text-sm">
+          <p className="flex items-start gap-3 rounded-lg border border-line bg-surface p-3 text-sm">
             <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
             <span>
               <strong>Buyer Protection.</strong> Pay through Passalong and we hold the money until you confirm the item is as described.{" "}
@@ -269,7 +269,7 @@ export default async function ItemPage({ params }: PageProps<"/items/[id]">) {
 
       {similar.length > 0 && (
         <section className="mt-14" aria-labelledby="similar-h">
-          <h2 id="similar-h" className="mb-5 border-b border-line pb-2 text-2xl font-medium sm:text-3xl">Similar items</h2>
+          <h2 id="similar-h" className="mb-5 border-b border-line pb-2 text-2xl font-semibold sm:text-3xl">Similar items</h2>
           <ListingGrid listings={similar} priorityCount={0} />
         </section>
       )}

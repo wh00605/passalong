@@ -27,7 +27,7 @@ export function FavouriteButton({
 
   const cls =
     variant === "overlay"
-      ? "relative z-10 inline-flex h-9 min-w-9 items-center justify-center gap-1 rounded-full bg-surface/95 px-2.5 text-xs font-medium text-ink shadow-[0_2px_8px_rgba(26,23,20,0.12)] backdrop-blur transition-colors hover:bg-surface"
+      ? "relative z-10 inline-flex h-9 min-w-9 items-center justify-center gap-1 rounded-full bg-surface/95 px-2.5 text-xs font-semibold text-ink shadow-[0_1px_4px_rgba(23,23,28,0.18)] backdrop-blur transition-colors hover:text-coral-700"
       : "btn-secondary";
 
   if (!signedIn) {

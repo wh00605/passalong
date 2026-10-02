@@ -21,7 +21,7 @@ export default async function ProhibitedItemsPage() {
     <div className="container-page max-w-3xl py-10">
       <DraftBanner />
       <p className="eyebrow mt-6">Legal</p>
-      <h1 className="mt-2 text-4xl font-medium sm:text-5xl">Prohibited items</h1>
+      <h1 className="mt-2 text-4xl font-semibold sm:text-5xl">Prohibited items</h1>
       <p className="mt-3">These items can&apos;t be sold on Passalong. We check listings automatically when they&apos;re published, and our team reviews reports. Listing prohibited items can lead to your account being suspended.</p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         {GROUPS.map(([title, items]) => (

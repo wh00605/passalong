@@ -17,7 +17,7 @@ export default async function WelcomePage({ searchParams }: PageProps<"/welcome"
   return (
     <div className="container-page max-w-4xl py-10">
       <p className="eyebrow">Step 1 of 1 · optional</p>
-      <h1 className="mt-2 text-4xl font-medium sm:text-5xl">
+      <h1 className="mt-2 text-4xl font-semibold sm:text-5xl">
         Welcome, {user.name.split(" ")[0]}. <span className="bg-accent-400 px-1">Let&apos;s tune your feed.</span>
       </h1>
       <p className="mt-3 max-w-xl text-muted">

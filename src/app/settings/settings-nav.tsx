@@ -30,7 +30,7 @@ export function SettingsNav() {
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`flex min-h-10 items-center rounded-none border px-3 text-sm font-semibold whitespace-nowrap ${active ? "border-ink bg-accent-400" : "border-transparent hover:border-ink"}`}
+                className={`flex min-h-10 items-center rounded-lg border px-3 text-sm font-semibold whitespace-nowrap ${active ? "border-ink bg-accent-400" : "border-transparent hover:border-ink"}`}
               >
                 {label}
               </Link>

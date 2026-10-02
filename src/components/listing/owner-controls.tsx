@@ -22,7 +22,7 @@ export function OwnerControls({ id, status, reservedFor }: { id: string; status:
 
   const editable = !["SOLD", "DELETED", "REMOVED"].includes(status);
   return (
-    <div className="space-y-3 rounded-none border border-dashed border-line-strong p-4">
+    <div className="space-y-3 rounded-lg border border-dashed border-line-strong p-4">
       <p className="eyebrow">Your item · {status.toLowerCase()}</p>
       <div className="flex flex-wrap gap-2">
         {editable && <Link href={`/items/${id}/edit`} className="btn-primary btn-sm">Edit</Link>}

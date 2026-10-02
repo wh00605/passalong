@@ -7,7 +7,7 @@ export default function AboutPage() {
   return (
     <div className="container-page max-w-3xl py-12">
       <p className="eyebrow">About</p>
-      <h1 className="mt-2 text-5xl font-medium leading-[0.95] sm:text-6xl">
+      <h1 className="mt-2 text-5xl font-semibold leading-[0.95] sm:text-6xl">
         Good stuff deserves a <span className="bg-accent-400 px-1">second round.</span>
       </h1>
       <div className="mt-8 space-y-4 text-lg">

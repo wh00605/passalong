@@ -13,7 +13,7 @@ export default async function PayoutsPage({ searchParams }: PageProps<"/settings
         To withdraw money from your wallet, connect a UK bank account. Our payment partner Stripe verifies your identity before your first withdrawal – a legal requirement for anyone receiving payments.
       </p>
       {!integrations.stripe() ? (
-        <p className="mt-4 rounded-none border border-dashed border-line-strong/60 p-4 text-sm text-muted">Payouts aren&apos;t set up on this site yet.</p>
+        <p className="mt-4 rounded-lg border border-dashed border-line-strong/60 p-4 text-sm text-muted">Payouts aren&apos;t set up on this site yet.</p>
       ) : (
         <div className="card mt-6 max-w-xl space-y-3 p-5">
           {user.stripePayoutsEnabled ? (

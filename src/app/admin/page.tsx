@@ -40,7 +40,7 @@ export default async function AdminDashboard({ searchParams }: PageProps<"/admin
         <ul className="grid grid-cols-2 gap-3 md:grid-cols-5" role="list">
           {queues.map(([label, n, href]) => (
             <li key={label}>
-              <Link href={href} className={`block rounded-none border border-line p-3 hover:shadow-[var(--shadow-tag-sm)] ${n > 0 ? "bg-accent-400" : "bg-surface"}`}>
+              <Link href={href} className={`block rounded-lg border border-line p-3 hover:shadow-[var(--shadow-tag-sm)] ${n > 0 ? "bg-accent-400" : "bg-surface"}`}>
                 <span className="block font-display text-3xl font-medium">{n}</span>
                 <span className="text-xs font-semibold">{label}</span>
               </Link>

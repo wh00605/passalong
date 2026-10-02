@@ -30,7 +30,7 @@ export default async function DataPage() {
         )}
       </section>
 
-      <section aria-labelledby="delete-h" className="rounded-none border border-danger p-5">
+      <section aria-labelledby="delete-h" className="rounded-lg border border-danger p-5">
         <h2 id="delete-h" className="text-2xl font-medium text-danger">Delete your account</h2>
         {deletion ? (
           <>

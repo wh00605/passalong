@@ -4,6 +4,7 @@ const port = Number(process.env.E2E_PORT ?? 3000);
 
 export default defineConfig({
   testDir: "./tests/e2e",
+  globalTeardown: "./tests/e2e/global-teardown.ts",
   timeout: 60_000,
   expect: { timeout: 10_000 },
   fullyParallel: false,

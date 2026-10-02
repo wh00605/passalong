@@ -75,7 +75,7 @@ export function SearchBox({ className = "" }: { className?: string }) {
       <label htmlFor={`${listId}-input`} className="sr-only">
         Search for items
       </label>
-      <Search className="pointer-events-none absolute top-1/2 left-1 h-[1.1rem] w-[1.1rem] -translate-y-1/2 text-subtle" strokeWidth={1.8} aria-hidden="true" />
+      <Search className="pointer-events-none absolute top-1/2 left-3.5 h-[1.1rem] w-[1.1rem] -translate-y-1/2 text-subtle" strokeWidth={1.8} aria-hidden="true" />
       <input
         id={`${listId}-input`}
         name="q"
@@ -87,7 +87,7 @@ export function SearchBox({ className = "" }: { className?: string }) {
         aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
         autoComplete="off"
         placeholder="Search for items, brands…"
-        className="input border-0 border-b border-line bg-transparent pr-10 pl-8 hover:border-line-strong focus:border-ink"
+        className="input rounded-full border-line bg-surface pr-14 pl-10 hover:border-line-strong"
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
@@ -108,13 +108,16 @@ export function SearchBox({ className = "" }: { className?: string }) {
           }
         }}
       />
-      <kbd aria-hidden="true" className="pointer-events-none absolute top-1/2 right-1 hidden -translate-y-1/2 rounded-none border border-line px-1.5 text-xs text-subtle md:block">/</kbd>
+      <button type="submit" className="absolute top-1/2 right-1.5 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-brand-600 text-white hover:bg-brand-700">
+        <Search className="h-4 w-4" strokeWidth={2.2} aria-hidden="true" />
+        <span className="sr-only">Search</span>
+      </button>
       <ul
         id={listId}
         role="listbox"
         aria-label="Search suggestions"
         hidden={!showList}
-        className="absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-none border border-line bg-surface py-1 shadow-[var(--shadow-tag)]"
+        className="absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-lg border border-line bg-surface py-1 shadow-[var(--shadow-tag)]"
       >
         {items.map((s, i) => (
           <li
