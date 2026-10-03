@@ -48,6 +48,8 @@ next-env.d.ts
 /test-results
 /playwright-report
 /.emails
-/.claude
+/.claude/*
+!/.claude/skills/
+__pycache__/
 /.windsurf
 
